@@ -23,7 +23,7 @@
 		};
 		version = "2.1.4";
 		versionStr = "2.1.4";
-		author = "[SeL] Belbo // Adrian";
+		author = "[SeL] Belbo // Adrian; Edonn";
 		authorUrl = "http://spezialeinheit-luchs.de/";
     };
 };
@@ -46,7 +46,7 @@
 			condition = "missionNamespace getVariable ['adv_aceCPR_enable',true] && !(_player getVariable ['adv_aceCPR_usedAEDStation',false]) && (_player getVariable ['ace_medical_medicClass',0]) > 0"; \
 			statement = "[_player,_target] call adv_aceCPR_fnc_useAEDStation"; \
 			exceptions[] = {"isNotInside"}; \
-			icon = "\adv_aceCPR\ui\defib_action.paa"; \
+			icon = "\adv_aceCPR\ui\defib_action_ca.paa"; \
 		};\
 	};\
 };
@@ -101,6 +101,7 @@ class cfgWeapons {
 	class CBA_MiscItem_ItemInfo;
 	
     class adv_aceCPR_AED: ACE_ItemCore {
+        author = "[SeL] Belbo // Adrian; Edonn";
         scope = 2;
         displayName = "$STR_ADV_ACECPR_AED_DISPLAYNAME";
 		picture = "\z\mti_armoury\addons\weapons\defib\data\ui\defib_icon_ca.paa";
@@ -112,6 +113,7 @@ class cfgWeapons {
         };
 	};	
     class adv_aceCPR_AED_used: ACE_ItemCore {
+        author = "[SeL] Belbo // Adrian; Edonn";
         scope = 1;
         displayName = "$STR_ADV_ACECPR_AED_USED_DISPLAYNAME";
 		picture = "\z\mti_armoury\addons\weapons\defib\data\ui\defib_icon_ca.paa";
@@ -131,7 +133,7 @@ class cfgVehicles {
         scope = 2;
         scopeCurator = 2;
         displayName = "$STR_ADV_ACECPR_AED_DISPLAYNAME";
-        author = "[SeL] Belbo";
+        author = "[SeL] Belbo; Edonn";
         vehicleClass = "Items";
 		model = "\A3\Structures_F_EPA\Items\Medical\Defibrillator_F.p3d";
         class TransportItems {
@@ -187,7 +189,7 @@ class ACE_Medical_Treatment_Actions {
 	class Defibrillator: CPR {
 		displayName = "$STR_ADV_ACECPR_AED_ACTION";
 		displayNameProgress = "$STR_ADV_ACECPR_AED_PROGRESS";
-		icon = "\adv_aceCPR\ui\defib_action.paa";
+		icon = "\adv_aceCPR\ui\defib_action_ca.paa";
 		items[] = {"adv_aceCPR_AED"};
 		condition = "[_medic, _patient] call adv_aceCPR_fnc_AED_condition";
 		treatmentTime = 8;

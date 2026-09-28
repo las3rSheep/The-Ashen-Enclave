@@ -3,7 +3,10 @@ class CfgPatches {
 		name = "TAE Objects";
 		author = "TAE Mod Team";
 		requiredAddons[] = {
+			"A3_Modules_F",
 			"A3_Weapons_F",
+			"A3_Misc_F_Helpers",
+			"OPTRE_BW_Locker",
 			"ace_interaction",
 			"ace_interact_menu",
 			"ace_arsenal",
@@ -11,6 +14,7 @@ class CfgPatches {
 			"ace_dragging",
 			"ace_cargo",
 			"ls_compat_ace_flags",
+			"ls_props_staticships",
 			"cba_xeh",
 			"JLTS_weapons_crates",
 			"3AS_Props",
@@ -18,6 +22,8 @@ class CfgPatches {
 			"3as_GNK_Prop",
 			"3AS_Prop_Flags",
 			"ls_characters_mandalorian",
+			"ls_weapons_westar",
+			"ls_weapons_zh73",
 			"tgf_helmets",
 			"TAEGear_Helmets_Customs",
 			"TAEGear_Armors_Customs",
@@ -27,7 +33,14 @@ class CfgPatches {
 			"knd_crates"
 		};
 		units[] = {
+			"TAE_Poster_HangInThere",
+			"TAE_Module_BridgeVisibility",
+			"TAE_Module_AircraftRequisition",
+			"TAE_Module_AircraftRepair",
+			"TAE_Acclamator",
+			"TAE_Acclamator_Landed",
 			"TAE_Restricted_Arsenal_Box",
+			"TAE_Restricted_Arsenal_Locker",
 			"TAE_Specialization_Gonk_Droid",
 			"TAE_Medical_Droid",
 			"TAE_Ammo_Crate",
@@ -68,7 +81,7 @@ class CfgPatches {
 			"TAE_Wearable_Nox_Helmet",
 			"TAE_Wearable_Hondo_Helmet",
 			"TAE_Wearable_Edonn_Helmet",
-			"TAE_Wearable_Teka_Helmet"
+			"TAE_Wearable_Shyyyo_Helmet"
 		};
 		weapons[] = {
 			"TAE_ClanFlag_Acklay_Item",
@@ -90,6 +103,9 @@ class CfgEditorCategories {
 };
 
 class CfgEditorSubcategories {
+	class TAE_EdSubcat_HouseKarr_CapitalShips {
+		displayName = "Capital Ships";
+	};
 	class TAE_EdSubcat_HouseKarr_ArsenalServices {
 		displayName = "Arsenal and Services";
 	};
@@ -115,6 +131,14 @@ class CfgFunctions {
 	class TAE {
 		class Objects {
 			file = "TAEObjects\functions";
+			class initAcclamatorFTL { postInit = 1; };
+			class moduleBridgeVisibility {};
+			class moduleAircraftRequisition {};
+			class initAircraftRequisition { postInit = 1; };
+			class aircraftRequisitionRequest {};
+			class repairAircraftOnPad {};
+			class serviceAircraftOnPad {};
+			class aircraftPylonMenu {};
 			class applyWearableLoadout {};
 			class fullHealPlayer {};
 			class initRestrictedArsenal {};
@@ -124,6 +148,11 @@ class CfgFunctions {
 };
 
 class Extended_Init_EventHandlers {
+	class TAE_Restricted_Arsenal_Locker {
+		class TAEObjects_initRestrictedArsenal {
+			init = "_this call TAE_fnc_initRestrictedArsenal";
+		};
+	};
 	class TAE_Restricted_Arsenal_Box {
 		class TAEObjects_initRestrictedArsenal {
 			init = "_this call TAE_fnc_initRestrictedArsenal";
@@ -136,56 +165,56 @@ class CfgWeapons {
 	class ls_carrierFlag_mandalorian_item;
 
 	class TAE_ClanFlag_Acklay_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Flag (Clan Acklay)";
 		ace_flags_texture = "\TAEObjects\data\flags\flag_acklay_ca.paa";
 		ace_flags_carrier = "TAE_ClanFlag_Acklay";
 	};
 
 	class TAE_ClanFlag_Foxx_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Flag (Clan Foxx)";
 		ace_flags_texture = "\TAEObjects\data\flags\flag_foxx_ca.paa";
 		ace_flags_carrier = "TAE_ClanFlag_Foxx";
 	};
 
 	class TAE_ClanFlag_Haranverd_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Flag (Clan Haranverd)";
 		ace_flags_texture = "\TAEObjects\data\flags\flag_haranverd_ca.paa";
 		ace_flags_carrier = "TAE_ClanFlag_Haranverd";
 	};
 
 	class TAE_ClanFlag_HouseKarr_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Flag (House Karr)";
 		ace_flags_texture = "\TAEObjects\data\flags\flag_house_karr_ca.paa";
 		ace_flags_carrier = "TAE_ClanFlag_HouseKarr";
 	};
 
 	class TAE_ClanFlag_Kyram_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Flag (Clan Kyr'am)";
 		ace_flags_texture = "\TAEObjects\data\flags\flag_kyram_ca.paa";
 		ace_flags_carrier = "TAE_ClanFlag_Kyram";
 	};
 
 	class TAE_ClanFlag_Rook_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Flag (Clan Rook)";
 		ace_flags_texture = "\TAEObjects\data\flags\flag_rook_ca.paa";
 		ace_flags_carrier = "TAE_ClanFlag_Rook";
 	};
 
 	class TAE_ClanFlag_Shyyyo_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Flag (Shyyyo)";
 		ace_flags_texture = "\TAEObjects\data\flags\flag_shyyyo_ca.paa";
 		ace_flags_carrier = "TAE_ClanFlag_Shyyyo";
 	};
 
 	class TAE_ClanFlag_Varen_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Flag (Clan Varen)";
 		ace_flags_texture = "\TAEObjects\data\flags\flag_varen_ca.paa";
 		ace_flags_carrier = "TAE_ClanFlag_Varen";
@@ -193,6 +222,175 @@ class CfgWeapons {
 };
 
 class CfgVehicles {
+	class UserTexture1m_F;
+	class TAE_Poster_HangInThere: UserTexture1m_F {
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "House Karr Poster (Hang In There)";
+		editorCategory = "TAE_EdCat_HouseKarr";
+		editorSubcategory = "TAE_EdSubcat_HouseKarr_Furniture";
+		hiddenSelectionsTextures[] = {"\TAEObjects\data\posters\hang_in_there_ca.paa"};
+	};
+	class Logic;
+	class Module_F: Logic {
+		class AttributesBase {
+			class Edit;
+		};
+	};
+	class TAE_Module_BridgeVisibility: Module_F {
+		scope = 2;
+		scopeCurator = 0;
+		displayName = "TAE Bridge Visibility";
+		category = "NO_CATEGORY";
+		function = "TAE_fnc_moduleBridgeVisibility";
+		isGlobal = 2;
+		isTriggerActivated = 0;
+		isDisposable = 0;
+		class Attributes: AttributesBase {
+			class Exterior: Edit {
+				property = "TAE_BridgeExterior";
+				displayName = "Exterior variable name";
+				tooltip = "Ship object hidden for clients inside the bridge.";
+				defaultValue = "'TAE_Acclamator_Exterior'";
+			};
+			class InteriorLayer: Edit {
+				property = "TAE_BridgeInteriorLayer";
+				displayName = "Interior layer name";
+				tooltip = "Unique Eden layer containing bridge scenery, not units or collision-only supports.";
+				defaultValue = "'TAE_Bridge_Interior'";
+			};
+			class HalfWidth: Edit {
+				property = "TAE_BridgeHalfWidth";
+				displayName = "Zone half-width (metres)";
+				tooltip = "Distance left and right of the module. Rotate the module to align the rectangle.";
+				typeName = "NUMBER";
+				defaultValue = "30";
+			};
+			class HalfLength: Edit {
+				property = "TAE_BridgeHalfLength";
+				displayName = "Zone half-length (metres)";
+				tooltip = "Distance forward and backward from the module centre.";
+				typeName = "NUMBER";
+				defaultValue = "30";
+			};
+			class HalfHeight: Edit {
+				property = "TAE_BridgeHalfHeight";
+				displayName = "Zone half-height (metres)";
+				tooltip = "Vertical distance above and below the module centre. Place the module at the centre height of the usable bridge.";
+				typeName = "NUMBER";
+				defaultValue = "8";
+			};
+			class Exclusions: Edit {
+				property = "TAE_BridgeExclusions";
+				displayName = "Excluded object variable names";
+				tooltip = "Comma-separated names. Their visibility is never changed by this module.";
+				defaultValue = "'BridgeShield,Bridge_Close_Ray,Bridge_Open_Ray'";
+			};
+		};
+	};
+	class TAE_Module_AircraftRequisition: Module_F {
+		TAE_repairOnly = 0;
+		scope = 2;
+		scopeCurator = 0;
+		displayName = "TAE Aircraft Requisition";
+		category = "NO_CATEGORY";
+		function = "TAE_fnc_moduleAircraftRequisition";
+		isGlobal = 2;
+		isTriggerActivated = 0;
+		isDisposable = 0;
+		class Attributes: AttributesBase {
+			class Terminal: Edit {
+				property = "TAE_RequisitionTerminal";
+				displayName = "Terminal variable name";
+				tooltip = "Variable name of the object that offers pilot-only scroll actions.";
+				defaultValue = "'TAE_AircraftTerminal'";
+			};
+			class Pad: Edit {
+				property = "TAE_RequisitionPad";
+				displayName = "Spawn pad variable name";
+				tooltip = "Invisible helipad defining spawn position, height and heading. Use a separate pad for each module.";
+				defaultValue = "'TAE_AircraftPad'";
+			};
+			class Aircraft: Edit {
+				property = "TAE_RequisitionAircraft";
+				displayName = "Aircraft classnames";
+				tooltip = "Array of quoted aircraft classnames. [] uses the House Karr aircraft defaults. Replaces, rather than extends, the defaults.";
+				defaultValue = "'[]'";
+			};
+			class Radius: Edit {
+				property = "TAE_RequisitionRadius";
+				displayName = "Pad clearance radius (metres)";
+				tooltip = "Area checked for people and vehicles before spawning, and for an aircraft to repair. Size for the largest aircraft; keep clear of walls.";
+				typeName = "NUMBER";
+				defaultValue = "30";
+			};
+			class RepairSeconds: Edit {
+				property = "TAE_RequisitionRepairSeconds";
+				displayName = "Full repair duration (seconds)";
+				typeName = "NUMBER";
+				defaultValue = "60";
+			};
+		};
+	};
+	class TAE_Module_AircraftRepair: TAE_Module_AircraftRequisition {
+		displayName = "TAE Aircraft Service Pad";
+		TAE_repairOnly = 1;
+		class Attributes: Attributes {
+			delete Aircraft;
+		};
+	};
+	class ls_staticShip_acclamator;
+	class ls_staticShip_acclamator_landed;
+
+	class TAE_Acclamator: ls_staticShip_acclamator {
+		hiddenSelectionsTextures[] = {
+			"\TAEObjects\data\acclamator\body_co.paa",
+			"\TAEObjects\data\acclamator\body_2_co.paa",
+			"\TAEObjects\data\acclamator\body_3_co.paa",
+			"\TAEObjects\data\acclamator\body_4_co.paa",
+			"\TAEObjects\data\acclamator\body_5_co.paa",
+			"\TAEObjects\data\acclamator\body_6_co.paa",
+			"\ls\core\addons\props_staticships\acclamator\data\engine_co.paa",
+			"\ls\core\addons\props_staticships\acclamator\data\glass_co.paa",
+			"\ls\core\addons\props_staticships\acclamator\data\interior_1_co.paa",
+			"\ls\core\addons\props_staticships\acclamator\data\interior_2_co.paa",
+			"\ls\core\addons\props_staticships\acclamator\data\interior_3_co.paa",
+			"\ls\core\addons\props_staticships\acclamator\data\interior_4_co.paa"
+		};
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "House Karr Acclamator";
+		author = "Legion Studios and TAE Mod Team";
+		editorCategory = "TAE_EdCat_HouseKarr";
+		editorSubcategory = "TAE_EdSubcat_HouseKarr_CapitalShips";
+	};
+
+	class TAE_Acclamator_Landed: ls_staticShip_acclamator_landed {
+		hiddenSelectionsTextures[] = {
+			"\TAEObjects\data\acclamator\body_co.paa",
+			"\TAEObjects\data\acclamator\body_2_co.paa",
+			"\TAEObjects\data\acclamator\body_3_co.paa",
+			"\TAEObjects\data\acclamator\body_4_co.paa",
+			"\TAEObjects\data\acclamator\body_5_co.paa",
+			"\TAEObjects\data\acclamator\body_6_co.paa",
+			"\ls\core\addons\props_staticships\acclamator\data\engine_co.paa",
+			"\ls\core\addons\props_staticships\acclamator\data\glass_co.paa",
+			"\ls\core\addons\props_staticships\acclamator\data\interior_1_co.paa",
+			"\ls\core\addons\props_staticships\acclamator\data\interior_2_co.paa",
+			"\ls\core\addons\props_staticships\acclamator\data\interior_3_co.paa",
+			"\ls\core\addons\props_staticships\acclamator\data\interior_4_co.paa",
+			"\TAEObjects\data\acclamator\landing_feet_co.paa",
+			"\TAEObjects\data\acclamator\landing_legs_co.paa",
+			"\ls\core\addons\props_staticships\acclamator\data\ramp_co.paa"
+		};
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "House Karr Acclamator (Landed)";
+		author = "Legion Studios and TAE Mod Team";
+		editorCategory = "TAE_EdCat_HouseKarr";
+		editorSubcategory = "TAE_EdSubcat_HouseKarr_CapitalShips";
+	};
+
 	class JLTS_Ammobox_weapons_GAR;
 	class JLTS_Ammobox_explosives_GAR;
 	class JLTS_Ammobox_ammo_GAR;
@@ -207,56 +405,56 @@ class CfgVehicles {
 	class TAE_ClanFlag_Acklay: ls_carrierFlag_mandalorian {
 		scope = 1;
 		scopeCurator = 0;
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Clan Acklay Flag";
 	};
 
 	class TAE_ClanFlag_Foxx: ls_carrierFlag_mandalorian {
 		scope = 1;
 		scopeCurator = 0;
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Clan Foxx Flag";
 	};
 
 	class TAE_ClanFlag_Haranverd: ls_carrierFlag_mandalorian {
 		scope = 1;
 		scopeCurator = 0;
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Clan Haranverd Flag";
 	};
 
 	class TAE_ClanFlag_HouseKarr: ls_carrierFlag_mandalorian {
 		scope = 1;
 		scopeCurator = 0;
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "House Karr Flag";
 	};
 
 	class TAE_ClanFlag_Kyram: ls_carrierFlag_mandalorian {
 		scope = 1;
 		scopeCurator = 0;
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Clan Kyr'am Flag";
 	};
 
 	class TAE_ClanFlag_Rook: ls_carrierFlag_mandalorian {
 		scope = 1;
 		scopeCurator = 0;
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Clan Rook Flag";
 	};
 
 	class TAE_ClanFlag_Shyyyo: ls_carrierFlag_mandalorian {
 		scope = 1;
 		scopeCurator = 0;
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Shyyyo Flag";
 	};
 
 	class TAE_ClanFlag_Varen: ls_carrierFlag_mandalorian {
 		scope = 1;
 		scopeCurator = 0;
-		author = "TAE Mod Team";
+		author = "Legion Studios and Jimothy";
 		displayName = "Clan Varen Flag";
 	};
 
@@ -264,7 +462,7 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "House Karr Specialization Gonk Droid";
-		author = "TAE Mod Team";
+		author = "Edonn";
 		editorCategory = "TAE_EdCat_HouseKarr";
 		editorSubcategory = "TAE_EdSubcat_HouseKarr_ArsenalServices";
 		side = 3;
@@ -305,7 +503,7 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "House Karr Medical Droid";
-		author = "TAE Mod Team";
+		author = "Edonn";
 		editorCategory = "TAE_EdCat_HouseKarr";
 		editorSubcategory = "TAE_EdSubcat_HouseKarr_ArsenalServices";
 		side = 3;
@@ -327,7 +525,7 @@ class CfgVehicles {
 	class TAE_Bed_Base: SFA_Bed_Single {
 		scope = 0;
 		scopeCurator = 0;
-		author = "TAE Mod Team";
+		author = "Edonn";
 		editorCategory = "TAE_EdCat_HouseKarr";
 		editorSubcategory = "TAE_EdSubcat_HouseKarr_Furniture";
 		hiddenSelections[] = {"camo1"};
@@ -397,8 +595,8 @@ class CfgVehicles {
 		model = "\ls\core\addons\characters_mandalorian\helmets\traditional\ls_helmet_mandalorian_traditional.p3d";
 		hiddenSelections[] = {"camo1","visor","neckTex"};
 		hiddenSelectionsTextures[] = {
-			"\TAEGear\data\Acklay\LS_TRAD_Helmet_Acklay.paa",
-			"\TAEGear\data\Acklay\LS_TRAD_Visor_Acklay.paa",
+			"\TAEGear\data\Acklay\LS_TRAD_Helmet_Acklay_co.paa",
+			"\TAEGear\data\Acklay\LS_TRAD_Visor_Acklay_co.paa",
 			"\ls\core\addons\characters_mandalorian\helmets\traditional\data\neck_co.paa"
 		};
 		simulation = "thingX";
@@ -451,13 +649,13 @@ class CfgVehicles {
 				class TAE_PutOnTowiArmor {
 					displayName = "Put On Towi's Armor";
 					condition = "true";
-					statement = "[_player,'tae_acklay_niteowl_armor','tae_towi_helmet','tae_ls_grey_rangefinder','tae_facewear_ls_neck_lining','tae_uniform_black_female'] call TAE_fnc_applyWearableLoadout";
+					statement = "[_player,'tae_towi_armor','tae_towi_helmet','tae_ls_grey_rangefinder','tae_facewear_ls_neck_lining','tae_uniform_black_female'] call TAE_fnc_applyWearableLoadout";
 				};
 
 				class TAE_PutOnBingoArmor {
 					displayName = "Put On Bingo's Armor";
 					condition = "true";
-					statement = "[_player,'tae_acklay_armor','tae_bingo_helmet','tgf_nvg_rangefinder_r','tae_facewear_ls_neck_lining','tae_uniform_ls_mandalorian'] call TAE_fnc_applyWearableLoadout";
+					statement = "[_player,'tae_bingo_armor','tae_bingo_helmet','tgf_nvg_rangefinder_r','tae_facewear_ls_neck_lining','tae_uniform_ls_mandalorian'] call TAE_fnc_applyWearableLoadout";
 				};
 
 				class TAE_PutOnNiteOwlArmor {
@@ -476,7 +674,7 @@ class CfgVehicles {
 		model = "\z\tgf\addons\helmets\traditional\traditional_helmet.p3d";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"\TAEGear\data\Foxx\TRAD_Helmet_Foxx.paa",
+			"\TAEGear\data\Foxx\TRAD_Helmet_Foxx_co.paa",
 			"\z\tgf\addons\helmets\traditional\data\camo2_co.paa"
 		};
 
@@ -528,7 +726,7 @@ class CfgVehicles {
 		model = "\z\tgf\addons\helmets\traditional\traditional_helmet.p3d";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"\TAEGear\data\Varen\TRAD_Helmet_Varen.paa",
+			"\TAEGear\data\Varen\TRAD_Helmet_Varen_co.paa",
 			"\z\tgf\addons\helmets\traditional\data\camo2_co.paa"
 		};
 
@@ -574,7 +772,7 @@ class CfgVehicles {
 		model = "\z\tgf\addons\helmets\traditional\traditional_helmet.p3d";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"\TAEGear\data\Haranverd\TRAD_Helmet_Haranverd.paa",
+			"\TAEGear\data\Haranverd\TRAD_Helmet_Haranverd_co.paa",
 			"\z\tgf\addons\helmets\traditional\data\camo2_co.paa"
 		};
 
@@ -626,7 +824,7 @@ class CfgVehicles {
 		model = "\z\tgf\addons\helmets\traditional\traditional_helmet.p3d";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"\TAEGear\data\Kyram\TRAD_Helmet_Kyram.paa",
+			"\TAEGear\data\Kyram\TRAD_Helmet_Kyram_co.paa",
 			"\z\tgf\addons\helmets\traditional\data\camo2_co.paa"
 		};
 
@@ -659,7 +857,7 @@ class CfgVehicles {
 		model = "\z\tgf\addons\helmets\traditional\traditional_helmet.p3d";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"\TAEGear\data\Rook\TRAD_Helmet_Rook.paa",
+			"\TAEGear\data\Rook\TRAD_Helmet_Rook_co.paa",
 			"\z\tgf\addons\helmets\traditional\data\camo2_co.paa"
 		};
 
@@ -717,7 +915,7 @@ class CfgVehicles {
 		model = "\z\tgf\addons\helmets\traditional\traditional_helmet.p3d";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"\TAEGear\data\HouseKarr\Traditional\TRAD_Helmet_Mando.paa",
+			"\TAEGear\data\HouseKarr\Traditional\TRAD_Helmet_Mando_co.paa",
 			"\z\tgf\addons\helmets\traditional\data\camo2_co.paa"
 		};
 
@@ -788,7 +986,7 @@ class CfgVehicles {
 		model = "\z\tgf\addons\helmets\warlord\warlord_helmet.p3d";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"\TAEGear\data\Nox\WAR_Helmet_Nox.paa",
+			"\TAEGear\data\Nox\WAR_Helmet_Nox_co.paa",
 			"\z\tgf\addons\helmets\warlord\data\camo2_co.paa"
 		};
 
@@ -816,7 +1014,7 @@ class CfgVehicles {
 		model = "\z\tgf\addons\helmets\battle_master\battle_master.p3d";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"\TAEGear\data\Hondo\BM_Helmet_Hondo.paa",
+			"\TAEGear\data\Hondo\BM_Helmet_Hondo_co.paa",
 			"\z\tgf\addons\helmets\battle_master\data\camo2_co.paa"
 		};
 
@@ -844,8 +1042,8 @@ class CfgVehicles {
 		model = "\ls\core\addons\characters_mandalorian\helmets\dinDjarin\ls_helmet_mandalorian_dinDjarin.p3d";
 		hiddenSelections[] = {"camo1","visor","neckTex"};
 		hiddenSelectionsTextures[] = {
-			"\TAEGear\data\Edonn\LS_DIN_Helmet_Edonn.paa",
-			"\TAEGear\data\Edonn\LS_DIN_Visor_Edonn.paa",
+			"\TAEGear\data\Edonn\LS_DIN_Helmet_Edonn_co.paa",
+			"\TAEGear\data\Edonn\LS_DIN_Visor_Edonn_co.paa",
 			"\ls\core\addons\characters_mandalorian\helmets\traditional\data\neck_co.paa"
 		};
 		hiddenSelectionsMaterials[] = {
@@ -870,16 +1068,16 @@ class CfgVehicles {
 		};
 	};
 
-	class TAE_Wearable_Teka_Helmet: TAE_Wearable_Helmet_Base {
+	class TAE_Wearable_Shyyyo_Helmet: TAE_Wearable_Helmet_Base {
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "Shyyyo Pilot Helmet";
 		model = "\z\tgf\addons\helmets\pilot\pilot_helmet.p3d";
 		hiddenSelections[] = {"camo1","camo2","camo"};
 		hiddenSelectionsTextures[] = {
-			"\TAEGear\data\Shyyyo\PLT_Helmet_Shyyyo.paa",
-			"\TAEGear\data\Shyyyo\PLT_Visor_Shyyyo.paa",
-			"\TAEGear\data\Shyyyo\PLT_Lights_Shyyyo.paa"
+			"\TAEGear\data\Shyyyo\PLT_Helmet_Shyyyo_co.paa",
+			"\TAEGear\data\Shyyyo\PLT_Visor_Shyyyo_co.paa",
+			"\TAEGear\data\Shyyyo\PLT_Lights_Shyyyo_co.paa"
 		};
 
 		class ACE_Actions {
@@ -909,7 +1107,7 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "House Karr Locker";
-		author = "TAE Mod Team";
+		author = "Edonn";
 		editorCategory = "TAE_EdCat_HouseKarr";
 		editorSubcategory = "TAE_EdSubcat_HouseKarr_Furniture";
 		hiddenSelections[] = {"Camo1","Camo2"};
@@ -938,7 +1136,7 @@ class CfgVehicles {
 	class TAE_Vexillum_Base: 3AS_Small_Mando_Stand {
 		scope = 0;
 		scopeCurator = 0;
-		author = "TAE Mod Team";
+		author = "Edonn";
 		editorCategory = "TAE_EdCat_HouseKarr";
 		editorSubcategory = "TAE_EdSubcat_HouseKarr_Vexillums";
 		model = "3AS\3AS_Props\Flags\models\Small_Stand\3as_Small_Stand.p3d";
@@ -1020,18 +1218,47 @@ class CfgVehicles {
 		};
 	};
 
+	class OPTRE_Furniture_Locker;
+	class TAE_Restricted_Arsenal_Locker: OPTRE_Furniture_Locker {
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "House Karr Personal Arsenal Locker";
+		author = "Big_Wilk (OPTRE) and Edonn";
+		editorCategory = "TAE_EdCat_HouseKarr";
+		editorSubcategory = "TAE_EdSubcat_HouseKarr_ArsenalServices";
+		side = 3;
+		armor = 4000;
+		ace_dragging_canCarry = 0;
+		ace_dragging_canDrag = 0;
+		ace_cargo_canLoad = 0;
+		ace_cargo_size = -1;
+		class ACE_Actions {
+			class ACE_MainActions {
+				distance = 6;
+				position = "[0,0,0.9]";
+				selection = "";
+				displayName = "Interactions";
+				condition = "true";
+			};
+		};
+		class TransportWeapons {};
+		class TransportMagazines {};
+		class TransportItems {};
+		class TransportBackpacks {};
+	};
+
 	class TAE_Restricted_Arsenal_Box: JLTS_Ammobox_weapons_GAR {
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "House Karr Restricted ACE Arsenal";
-		author = "TAE Mod Team";
+		author = "Edonn";
 		editorCategory = "TAE_EdCat_HouseKarr";
 		editorSubcategory = "TAE_EdSubcat_HouseKarr_ArsenalServices";
 		side = 3;
 		armor = 4000;
 		hiddenSelectionsTextures[] = {
 			"\MRC\JLTS\weapons\Crates\data\crate_1_GAR_co.paa",
-			"\TAEObjects\data\screen_karr_arsenal.paa"
+			"\TAEObjects\data\screen_karr_arsenal_co.paa"
 		};
 
 		ace_dragging_canCarry = 0;
@@ -1059,14 +1286,14 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "House Karr Ammo Crate";
-		author = "TAE Mod Team";
+		author = "Edonn";
 		editorCategory = "TAE_EdCat_HouseKarr";
 		editorSubcategory = "TAE_EdSubcat_HouseKarr_Supplies";
 		side = 3;
 		armor = 4000;
 		hiddenSelectionsTextures[] = {
 			"\MRC\JLTS\weapons\Crates\data\crate_1_GAR_co.paa",
-			"\TAEObjects\data\screen_karr_arsenal.paa"
+			"\TAEObjects\data\screen_karr_arsenal_co.paa"
 		};
 
 		ace_dragging_canCarry = 0;
@@ -1111,14 +1338,14 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "House Karr Grenades/Explosives Crate";
-		author = "TAE Mod Team";
+		author = "Edonn";
 		editorCategory = "TAE_EdCat_HouseKarr";
 		editorSubcategory = "TAE_EdSubcat_HouseKarr_Supplies";
 		side = 3;
 		armor = 4000;
 		hiddenSelectionsTextures[] = {
 			"\MRC\JLTS\weapons\Crates\data\crate_1_GAR_co.paa",
-			"\TAEObjects\data\screen_karr_arsenal.paa"
+			"\TAEObjects\data\screen_karr_arsenal_co.paa"
 		};
 
 		ace_dragging_canCarry = 0;
@@ -1282,14 +1509,14 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "House Karr Medical Crate";
-		author = "TAE Mod Team";
+		author = "Edonn";
 		editorCategory = "TAE_EdCat_HouseKarr";
 		editorSubcategory = "TAE_EdSubcat_HouseKarr_Supplies";
 		side = 3;
 		armor = 4000;
 		hiddenSelectionsTextures[] = {
 			"\MRC\JLTS\weapons\Crates\data\crate_3_GAR_co.paa",
-			"\TAEObjects\data\screen_karr_arsenal.paa"
+			"\TAEObjects\data\screen_karr_arsenal_co.paa"
 		};
 
 		ace_dragging_canCarry = 0;

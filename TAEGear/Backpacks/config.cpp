@@ -16,6 +16,8 @@ class CfgPatches {
 			"tae_hondo_JT13",
 			"tae_hondo_JT13_LR",
 			"tae_stasik_JT12",
+			"tae_jimothy_JT12",
+			"tae_frenk_JT12",
 			"tae_stasik_JT12_LR",
 			"tae_edonn_JT13_LR",
 			"tae_edonn_JT13",
@@ -164,7 +166,9 @@ class XtdGearModels {
 			class owner {
 				alwaysSelectable = 1;
 				label = "Owner";
-				values[] = { "Hondo", "Stasik", "Edonn", "Nova" };
+				values[] = { "Hondo", "Stasik", "Edonn", "Nova", "Jimothy", "Frenk" };
+				class Frenk { label = "Frenk"; };
+				class Jimothy { label = "Jimothy"; };
 
 				class Hondo {
 					label = "Hondo";
@@ -203,6 +207,16 @@ class XtdGearModels {
 
 class XtdGearInfos {
 	class CfgVehicles {
+		class tae_frenk_JT12 {
+			model = "TAE_custom_Backpacks";
+			owner = "Frenk";
+			LR = "No";
+		};
+		class tae_jimothy_JT12 {
+			model = "TAE_custom_Backpacks";
+			owner = "Jimothy";
+			LR = "No";
+		};
 		//Jetpacks
 		class tae_jetpack_Z6 {
 			model = "TAE_standard_Jetpacks";
@@ -586,14 +600,34 @@ class CfgVehicles {
 		author = "Kandosii Mod Devs and Edonn";
 		displayName = "Hondo's JT-13 Jetpack";
 		descriptionShort = "Hondo's JT-13 Jetpack";
-		hiddenselectionstextures[] = {"TAEGear\data\Hondo\JT13_Pack_Hondo.paa"};
+		hiddenselectionstextures[] = {"TAEGear\data\Hondo\JT13_Pack_Hondo_co.paa"};
 	};
 	class tae_hondo_JT13_LR : tae_jetpack_JT13_LR {
 		scope = 2;
 		author = "Kandosii Mod Devs and Edonn";
 		displayName = "Hondo's JT-13 Jetpack LR";
 		descriptionShort = "Hondo's JT-13 Jetpack LR";
-		hiddenselectionstextures[] = {"TAEGear\data\Hondo\JT13_RTO_Pack_Hondo.paa"};
+		hiddenselectionstextures[] = {"TAEGear\data\Hondo\JT13_RTO_Pack_Hondo_co.paa"};
+	};
+	class tae_frenk_JT12 : tae_jetpack_JT12 {
+		scope = 2;
+		author = "House Kandosii and Jimothy";
+		displayName = "Frenk's JT-12 Jetpack";
+		descriptionShort = "Frenk's JT-12 Jetpack";
+		hiddenSelectionsTextures[] = {
+			"TAEGear\data\Frenk\JT12_Rocket_Frenk.paa",
+			"TAEGear\data\Frenk\JT12_Pack_Frenk.paa"
+		};
+	};
+	class tae_jimothy_JT12 : tae_jetpack_JT12 {
+		scope = 2;
+		author = "House Kandosii and Jimothy";
+		displayName = "Jimothy's JT-12 Jetpack";
+		descriptionShort = "Jimothy's JT-12 Jetpack";
+		hiddenSelectionsTextures[] = {
+			"TAEGear\data\Jimothy\JT12_Rocket_Jimothy.paa",
+			"TAEGear\data\Jimothy\JT12_Pack_Jimothy.paa"
+		};
 	};
 	class tae_stasik_JT12 : tae_jetpack_JT12 {
 		scope = 2;
@@ -602,7 +636,7 @@ class CfgVehicles {
 		descriptionShort = "Stasik's JT-12 Jetpack";
 		hiddenselectionstextures[] = {
 			"\knd_jetpacks\data\jt12\rocket_co.paa",
-			"TAEGear\data\Stasik\JT12_Pack_Stasik.paa"
+			"TAEGear\data\Stasik\JT12_Pack_Stasik_co.paa"
 		};
 	};
 	class tae_stasik_JT12_LR : tae_jetpack_JT12_LR {
@@ -612,7 +646,7 @@ class CfgVehicles {
 		descriptionShort = "Stasik's JT-12 Jetpack LR";
 		hiddenselectionstextures[] = {
 			"\knd_jetpacks\data\jt12\rocket_co.paa",
-			"TAEGear\data\Stasik\JT12_RTO_Pack_Stasik.paa"
+			"TAEGear\data\Stasik\JT12_RTO_Pack_Stasik_co.paa"
 		};
 	};
 	class tae_edonn_JT13_LR : tae_jetpack_JT13_LR {
@@ -620,14 +654,14 @@ class CfgVehicles {
 		author = "Kandosii Mod Devs and Edonn";
 		displayName = "Edonn's JT-13 Jetpack LR";
 		descriptionShort = "Edonn's JT-13 Jetpack LR";
-		hiddenselectionstextures[] = {"TAEGear\data\Edonn\JT13_RTO_Pack_Edonn.paa"};
+		hiddenselectionstextures[] = {"TAEGear\data\Edonn\JT13_RTO_Pack_Edonn_co.paa"};
 	};
 	class tae_edonn_JT13 : tae_jetpack_JT13 {
 		scope = 2;
 		author = "Kandosii Mod Devs and Edonn";
 		displayName = "Edonn's JT-13 Jetpack";
 		descriptionShort = "Edonn's JT-13 Jetpack";
-		hiddenselectionstextures[] = {"TAEGear\data\Edonn\JT13_Pack_Edonn.paa"};
+		hiddenselectionstextures[] = {"TAEGear\data\Edonn\JT13_Pack_Edonn_co.paa"};
 	};
 	class tae_nova_Z6 : tae_jetpack_Z6 {
 		scope = 2;
@@ -635,8 +669,8 @@ class CfgVehicles {
 		displayName = "Nova's Z-6 Jetpack";
 		descriptionShort = "Nova's Z-6 Jetpack";
 		hiddenselectionstextures[] = {
-			"TAEGear\data\Nova\Z6_Rocket_Nova.paa",
-			"TAEGear\data\Nova\Z6_Pack_Nova.paa"
+			"TAEGear\data\Nova\Z6_Rocket_Nova_co.paa",
+			"TAEGear\data\Nova\Z6_Pack_Nova_co.paa"
 		};
 	};
 };

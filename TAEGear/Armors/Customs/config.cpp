@@ -19,6 +19,8 @@ class CfgPatches {
 			"tae_teka_armor",
 			"tae_shyyyo_recon_armor",
 			"tae_acklay_armor",
+			"tae_towi_armor",
+			"tae_bingo_armor",
 			"tae_acklay_niteowl_armor",
 			"tae_stasik_armor",
 			"tae_edonn_armor",
@@ -123,7 +125,9 @@ class XtdGearModels {
 			class owner {
 				alwaysSelectable = 1;
 				label = "Owner";
-				values[] = { "Acklay","Niteowl","Stasik","Jimothy","Frenk" };
+				values[] = { "Acklay","Niteowl","Stasik","Jimothy","Frenk","Towi","Bingo" };
+				class Towi { label = "Towi"; };
+				class Bingo { label = "Bingo"; };
 				class Acklay {
 					label = "Standard";
 				};
@@ -310,6 +314,8 @@ class XtdGearInfos {
 			owner	= "Shyyyo";
 		};
 		//Acklay
+		class tae_towi_armor { model = "TAE_acklay_vests"; owner = "Towi"; };
+		class tae_bingo_armor { model = "TAE_acklay_vests"; owner = "Bingo"; };
 		class tae_acklay_armor {
 			model	= "TAE_acklay_vests";
 			owner	= "Acklay";
@@ -415,15 +421,15 @@ class CfgWeapons {
 		displayName = "House Karr Medium Armor (Foundling)";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\HouseKarr\Traditional\MED_Armor_FND.paa",
-			"TAEGear\data\HouseKarr\Traditional\MED_Brace_FND.paa"
+			"TAEGear\data\HouseKarr\Traditional\MED_Armor_FND_co.paa",
+			"TAEGear\data\HouseKarr\Traditional\MED_Brace_FND_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\HouseKarr\Traditional\MED_Armor_FND.paa",
-				"TAEGear\data\HouseKarr\Traditional\MED_Brace_FND.paa"
+				"TAEGear\data\HouseKarr\Traditional\MED_Armor_FND_co.paa",
+				"TAEGear\data\HouseKarr\Traditional\MED_Brace_FND_co.paa"
 			};
 		};
 	};
@@ -435,15 +441,15 @@ class CfgWeapons {
 		displayName = "House Karr Medium Armor (Mandalorian Recruit)";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\HouseKarr\Traditional\MED_Armor_Rec.paa",
-			"TAEGear\data\HouseKarr\Traditional\MED_Brace_Rec.paa"
+			"TAEGear\data\HouseKarr\Traditional\MED_Armor_Rec_co.paa",
+			"TAEGear\data\HouseKarr\Traditional\MED_Brace_Rec_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\HouseKarr\Traditional\MED_Armor_Rec.paa",
-				"TAEGear\data\HouseKarr\Traditional\MED_Brace_Rec.paa"
+				"TAEGear\data\HouseKarr\Traditional\MED_Armor_Rec_co.paa",
+				"TAEGear\data\HouseKarr\Traditional\MED_Brace_Rec_co.paa"
 			};
 		};
 	};
@@ -455,15 +461,15 @@ class CfgWeapons {
 		displayName = "House Karr Medium Armor (Mandalorian Apprentice)";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\HouseKarr\Traditional\MED_Armor_App.paa",
-			"TAEGear\data\HouseKarr\Traditional\MED_Brace_App.paa"
+			"TAEGear\data\HouseKarr\Traditional\MED_Armor_App_co.paa",
+			"TAEGear\data\HouseKarr\Traditional\MED_Brace_App_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\HouseKarr\Traditional\MED_Armor_App.paa",
-				"TAEGear\data\HouseKarr\Traditional\MED_Brace_App.paa"
+				"TAEGear\data\HouseKarr\Traditional\MED_Armor_App_co.paa",
+				"TAEGear\data\HouseKarr\Traditional\MED_Brace_App_co.paa"
 			};
 		};
 	};
@@ -475,15 +481,15 @@ class CfgWeapons {
 		displayName = "House Karr Medium Armor (Mandalorian)";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\HouseKarr\Traditional\MED_Armor_Mando.paa",
-			"TAEGear\data\HouseKarr\Traditional\MED_Brace_Mando.paa"
+			"TAEGear\data\HouseKarr\Traditional\MED_Armor_Mando_co.paa",
+			"TAEGear\data\HouseKarr\Traditional\MED_Brace_Mando_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\HouseKarr\Traditional\MED_Armor_Mando.paa",
-				"TAEGear\data\HouseKarr\Traditional\MED_Brace_Mando.paa"
+				"TAEGear\data\HouseKarr\Traditional\MED_Armor_Mando_co.paa",
+				"TAEGear\data\HouseKarr\Traditional\MED_Brace_Mando_co.paa"
 			};
 		};
 	};
@@ -495,15 +501,15 @@ class CfgWeapons {
 		displayName = "House Karr Medium Armor (Mandalorian Veteran)";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\HouseKarr\Traditional\MED_Armor_Vet.paa",
-			"TAEGear\data\HouseKarr\Traditional\MED_Brace_Vet.paa"
+			"TAEGear\data\HouseKarr\Traditional\MED_Armor_Vet_co.paa",
+			"TAEGear\data\HouseKarr\Traditional\MED_Brace_Vet_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\HouseKarr\Traditional\MED_Armor_Vet.paa",
-				"TAEGear\data\HouseKarr\Traditional\MED_Brace_Vet.paa"
+				"TAEGear\data\HouseKarr\Traditional\MED_Armor_Vet_co.paa",
+				"TAEGear\data\HouseKarr\Traditional\MED_Brace_Vet_co.paa"
 			};
 		};
 	};
@@ -516,15 +522,15 @@ class CfgWeapons {
 		displayName = "House Karr Nite Owl Armor (Foundling)";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_FND.paa",
-			"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND.paa"
+			"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_FND_co.paa",
+			"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_FND.paa",
-				"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND.paa"
+				"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_FND_co.paa",
+				"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND_co.paa"
 			};
 		};
 	};
@@ -536,15 +542,15 @@ class CfgWeapons {
 		displayName = "House Karr Nite Owl Armor (Mandalorian Recruit)";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MR.paa",
-			"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND.paa"
+			"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MR_co.paa",
+			"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MR.paa",
-				"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND.paa"
+				"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MR_co.paa",
+				"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND_co.paa"
 			};
 		};
 	};
@@ -556,15 +562,15 @@ class CfgWeapons {
 		displayName = "House Karr Nite Owl Armor (Mandalorian Apprentice)";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MA.paa",
-			"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND.paa"
+			"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MA_co.paa",
+			"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MA.paa",
-				"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND.paa"
+				"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MA_co.paa",
+				"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND_co.paa"
 			};
 		};
 	};
@@ -576,15 +582,15 @@ class CfgWeapons {
 		displayName = "House Karr Nite Owl Armor (Mandalorian)";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MM.paa",
-			"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND.paa"
+			"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MM_co.paa",
+			"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MM.paa",
-				"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND.paa"
+				"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MM_co.paa",
+				"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND_co.paa"
 			};
 		};
 	};
@@ -596,15 +602,15 @@ class CfgWeapons {
 		displayName = "House Karr Nite Owl Armor (Mandalorian Veteran)";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MV.paa",
-			"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND.paa"
+			"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MV_co.paa",
+			"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MV.paa",
-				"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND.paa"
+				"TAEGear\data\HouseKarr\NiteOwl\NITE_Armor_MV_co.paa",
+				"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND_co.paa"
 			};
 		};
 	};
@@ -618,15 +624,15 @@ class CfgWeapons {
 		displayName = "Hondo's Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Hondo\MED_Armor_Hondo.paa",
-			"TAEGear\data\Hondo\MED_Brace_Hondo.paa"
+			"TAEGear\data\Hondo\MED_Armor_Hondo_co.paa",
+			"TAEGear\data\Hondo\MED_Brace_Hondo_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Hondo\MED_Armor_Hondo.paa",
-				"TAEGear\data\Hondo\MED_Brace_Hondo.paa"
+				"TAEGear\data\Hondo\MED_Armor_Hondo_co.paa",
+				"TAEGear\data\Hondo\MED_Brace_Hondo_co.paa"
 			};
 		};
 	};
@@ -640,15 +646,15 @@ class CfgWeapons {
 		displayName = "Teka's Pilot Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Teka\MED_Armor_Teka.paa",
-			"TAEGear\data\Teka\MED_Brace_Teka.paa"
+			"TAEGear\data\Teka\MED_Armor_Teka_co.paa",
+			"TAEGear\data\Teka\MED_Brace_Teka_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Teka\MED_Armor_Teka.paa",
-				"TAEGear\data\Teka\MED_Brace_Teka.paa"
+				"TAEGear\data\Teka\MED_Armor_Teka_co.paa",
+				"TAEGear\data\Teka\MED_Brace_Teka_co.paa"
 			};
 		};
 	};
@@ -660,20 +666,46 @@ class CfgWeapons {
 		displayName = "Shyyyo Recon Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Shyyyo\REC_Armor_Shyyyo.paa",
-			"TAEGear\data\Shyyyo\REC_Brace_Shyyyo.paa"
+			"TAEGear\data\Shyyyo\REC_Armor_Shyyyo_co.paa",
+			"TAEGear\data\Shyyyo\REC_Brace_Shyyyo_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Shyyyo\REC_Armor_Shyyyo.paa",
-				"TAEGear\data\Shyyyo\REC_Brace_Shyyyo.paa"
+				"TAEGear\data\Shyyyo\REC_Armor_Shyyyo_co.paa",
+				"TAEGear\data\Shyyyo\REC_Brace_Shyyyo_co.paa"
 			};
 		};
 	};
 	
 	// Clan Acklay
+	class tae_towi_armor: tae_nite_owl_armor {
+		scope = 2;
+		scopeArsenal = 2;
+		scopeCurator = 2;
+		author = "Jimothy";
+		displayName = "Towi's Nite Owl Armor";
+		hiddenSelections[] = {"camo1","camo2"};
+		hiddenSelectionsTextures[] = {"TAEGear\data\Towi\NITE_Armor_Towi.paa","TAEGear\data\Towi\NITE_Bracer_Towi.paa"};
+		class ItemInfo: ItemInfo {
+			hiddenSelections[] = {"camo1","camo2"};
+			hiddenSelectionsTextures[] = {"TAEGear\data\Towi\NITE_Armor_Towi.paa","TAEGear\data\Towi\NITE_Bracer_Towi.paa"};
+		};
+	};
+	class tae_bingo_armor: tae_armor_battle {
+		scope = 2;
+		scopeArsenal = 2;
+		scopeCurator = 2;
+		author = "Jimothy";
+		displayName = "Bingo's Battle Armor";
+		hiddenSelections[] = {"camo1","camo2"};
+		hiddenSelectionsTextures[] = {"TAEGear\data\Bingo\BAT_Armor_Bingo.paa","TAEGear\data\Bingo\BAT_Brace_Bingo.paa"};
+		class ItemInfo: ItemInfo {
+			hiddenSelections[] = {"camo1","camo2"};
+			hiddenSelectionsTextures[] = {"TAEGear\data\Bingo\BAT_Armor_Bingo.paa","TAEGear\data\Bingo\BAT_Brace_Bingo.paa"};
+		};
+	};
 	class tae_acklay_armor : tae_armor_ls_traditional {
 		scope = 2;
 		scopeArsenal = 2;
@@ -682,12 +714,12 @@ class CfgWeapons {
 		displayName = "Clan Acklay Armor";
 		hiddenSelections[] = {"camo1"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Acklay\LS_TRAD_Armor_Acklay.paa"
+			"TAEGear\data\Acklay\LS_TRAD_Armor_Acklay_co.paa"
 		};
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Acklay\LS_TRAD_Armor_Acklay.paa"
+				"TAEGear\data\Acklay\LS_TRAD_Armor_Acklay_co.paa"
 			};
 		};
 	};
@@ -699,15 +731,15 @@ class CfgWeapons {
 		displayName = "Clan Acklay Nite Owl Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Acklay\NITE_Armor_Acklay.paa",
-			"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND.paa"
+			"TAEGear\data\Acklay\NITE_Armor_Acklay_co.paa",
+			"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Acklay\NITE_Armor_Acklay.paa",
-				"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND.paa"
+				"TAEGear\data\Acklay\NITE_Armor_Acklay_co.paa",
+				"TAEGear\data\HouseKarr\NiteOwl\NITE_Brace_FND_co.paa"
 			};
 		};
 	};
@@ -719,15 +751,15 @@ class CfgWeapons {
 		displayName = "Stasik's Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Stasik\TRAD_Armor_Stasik.paa",
-			"TAEGear\data\Stasik\TRAD_Brace_Stasik.paa"
+			"TAEGear\data\Stasik\TRAD_Armor_Stasik_co.paa",
+			"TAEGear\data\Stasik\TRAD_Brace_Stasik_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Stasik\TRAD_Armor_Stasik.paa",
-				"TAEGear\data\Stasik\TRAD_Brace_Stasik.paa"
+				"TAEGear\data\Stasik\TRAD_Armor_Stasik_co.paa",
+				"TAEGear\data\Stasik\TRAD_Brace_Stasik_co.paa"
 			};
 		};
 	};
@@ -740,7 +772,7 @@ class CfgWeapons {
 		displayName = "Edonn's Armor";
 		hiddenSelections[] = {"camo1"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Edonn\LS_Armor_Edonn.paa"
+			"TAEGear\data\Edonn\LS_Armor_Edonn_co.paa"
 		};
 		hiddenSelectionsMaterials[] = {
 			"TAEGear\data\Edonn\LS_Armor_Edonn.rvmat"
@@ -748,7 +780,7 @@ class CfgWeapons {
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Edonn\LS_Armor_Edonn.paa"
+				"TAEGear\data\Edonn\LS_Armor_Edonn_co.paa"
 			};
 			hiddenSelectionsMaterials[] = {
 				"TAEGear\data\Edonn\LS_Armor_Edonn.rvmat"
@@ -765,15 +797,15 @@ class CfgWeapons {
 		displayName = "Frenk's Arbiter Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Frenk\ARB_Armor_Frenk.paa",
-			"TAEGear\data\Frenk\ARB_Brace_Frenk.paa"
+			"TAEGear\data\Frenk\ARB_Armor_Frenk_co.paa",
+			"TAEGear\data\Frenk\ARB_Brace_Frenk_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Frenk\ARB_Armor_Frenk.paa",
-				"TAEGear\data\Frenk\ARB_Brace_Frenk.paa"
+				"TAEGear\data\Frenk\ARB_Armor_Frenk_co.paa",
+				"TAEGear\data\Frenk\ARB_Brace_Frenk_co.paa"
 			};
 		};
 	};
@@ -787,15 +819,15 @@ class CfgWeapons {
 		displayName = "Nox's Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Nox\HEAV_Armor_Nox.paa",
-			"TAEGear\data\Nox\HEAV_Brace_Nox.paa"
+			"TAEGear\data\Nox\HEAV_Armor_Nox_co.paa",
+			"TAEGear\data\Nox\HEAV_Brace_Nox_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Nox\HEAV_Armor_Nox.paa",
-				"TAEGear\data\Nox\HEAV_Brace_Nox.paa"
+				"TAEGear\data\Nox\HEAV_Armor_Nox_co.paa",
+				"TAEGear\data\Nox\HEAV_Brace_Nox_co.paa"
 			};
 		};
 	};
@@ -809,15 +841,15 @@ class CfgWeapons {
 		displayName = "Jimothy's Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Jimothy\HEAV_Armor_Jimothy.paa",
-			"TAEGear\data\Jimothy\HEAV_Brace_Jimothy.paa"
+			"TAEGear\data\Jimothy\HEAV_Armor_Jimothy_co.paa",
+			"TAEGear\data\Jimothy\HEAV_Brace_Jimothy_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Jimothy\HEAV_Armor_Jimothy.paa",
-				"TAEGear\data\Jimothy\HEAV_Brace_Jimothy.paa"
+				"TAEGear\data\Jimothy\HEAV_Armor_Jimothy_co.paa",
+				"TAEGear\data\Jimothy\HEAV_Brace_Jimothy_co.paa"
 			};
 		};
 	};
@@ -831,15 +863,15 @@ class CfgWeapons {
 		displayName = "Clan Foxx Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Foxx\MED_Armor_Foxx.paa",
-			"TAEGear\data\Foxx\MED_Brace_Foxx.paa"
+			"TAEGear\data\Foxx\MED_Armor_Foxx_co.paa",
+			"TAEGear\data\Foxx\MED_Brace_Foxx_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Foxx\MED_Armor_Foxx.paa",
-				"TAEGear\data\Foxx\MED_Brace_Foxx.paa"
+				"TAEGear\data\Foxx\MED_Armor_Foxx_co.paa",
+				"TAEGear\data\Foxx\MED_Brace_Foxx_co.paa"
 			};
 		};
 	};
@@ -851,15 +883,15 @@ class CfgWeapons {
 		displayName = "Juno's Heavy Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Juno\HEAV_Armor_Juno.paa",
-			"TAEGear\data\Juno\HEAV_Brace_Juno.paa"
+			"TAEGear\data\Juno\HEAV_Armor_Juno_co.paa",
+			"TAEGear\data\Juno\HEAV_Brace_Juno_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Juno\HEAV_Armor_Juno.paa",
-				"TAEGear\data\Juno\HEAV_Brace_Juno.paa"
+				"TAEGear\data\Juno\HEAV_Armor_Juno_co.paa",
+				"TAEGear\data\Juno\HEAV_Brace_Juno_co.paa"
 			};
 		};
 	};
@@ -871,15 +903,15 @@ class CfgWeapons {
 		displayName = "Galaxy's Medium Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Galaxy\MED_Armor_Galaxy.paa",
-			"TAEGear\data\Galaxy\MED_Brace_Galaxy.paa"
+			"TAEGear\data\Galaxy\MED_Armor_Galaxy_co.paa",
+			"TAEGear\data\Galaxy\MED_Brace_Galaxy_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Galaxy\MED_Armor_Galaxy.paa",
-				"TAEGear\data\Galaxy\MED_Brace_Galaxy.paa"
+				"TAEGear\data\Galaxy\MED_Armor_Galaxy_co.paa",
+				"TAEGear\data\Galaxy\MED_Brace_Galaxy_co.paa"
 			};
 		};
 	};
@@ -892,15 +924,15 @@ class CfgWeapons {
 		displayName = "Clan Varen Recon Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Varen\REC_Armor_Varen.paa",
-			"TAEGear\data\Varen\REC_Brace_Varen.paa"
+			"TAEGear\data\Varen\REC_Armor_Varen_co.paa",
+			"TAEGear\data\Varen\REC_Brace_Varen_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Varen\REC_Armor_Varen.paa",
-				"TAEGear\data\Varen\REC_Brace_Varen.paa"
+				"TAEGear\data\Varen\REC_Armor_Varen_co.paa",
+				"TAEGear\data\Varen\REC_Brace_Varen_co.paa"
 			};
 		};
 	};
@@ -912,15 +944,15 @@ class CfgWeapons {
 		displayName = "Clan Varen Nite Owl Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Varen\NITE_Armor_Varen.paa",
-			"TAEGear\data\Varen\NITE_Brace_Varen.paa"
+			"TAEGear\data\Varen\NITE_Armor_Varen_co.paa",
+			"TAEGear\data\Varen\NITE_Brace_Varen_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Varen\NITE_Armor_Varen.paa",
-				"TAEGear\data\Varen\NITE_Brace_Varen.paa"
+				"TAEGear\data\Varen\NITE_Armor_Varen_co.paa",
+				"TAEGear\data\Varen\NITE_Brace_Varen_co.paa"
 			};
 		};
 	};
@@ -930,18 +962,18 @@ class CfgWeapons {
 		scope = 2;
 		scopeArsenal = 2;
 		scopeCurator = 2;
-		author = "TAE Mod Team";
+		author = "Sage";
 		displayName = "Clan Haranverd Traditional Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Haranverd\TRAD_Armor_Haranverd.paa",
+			"TAEGear\data\Haranverd\TRAD_Armor_Haranverd_co.paa",
 			"\z\tgf\addons\armour\light_armour\data\camo2_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Haranverd\TRAD_Armor_Haranverd.paa",
+				"TAEGear\data\Haranverd\TRAD_Armor_Haranverd_co.paa",
 				"\z\tgf\addons\armour\light_armour\data\camo2_co.paa"
 			};
 		};
@@ -951,18 +983,18 @@ class CfgWeapons {
 		scope = 2;
 		scopeArsenal = 2;
 		scopeCurator = 2;
-		author = "TAE Mod Team";
+		author = "Sage";
 		displayName = "Clan Haranverd Nite Owl Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Haranverd\NITE_Armor_Haranverd.paa",
+			"TAEGear\data\Haranverd\NITE_Armor_Haranverd_co.paa",
 			"\z\tgf\addons\armour\nite_owl_armour\data\camo2_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Haranverd\NITE_Armor_Haranverd.paa",
+				"TAEGear\data\Haranverd\NITE_Armor_Haranverd_co.paa",
 				"\z\tgf\addons\armour\nite_owl_armour\data\camo2_co.paa"
 			};
 		};
@@ -973,19 +1005,19 @@ class CfgWeapons {
 		scope = 2;
 		scopeArsenal = 2;
 		scopeCurator = 2;
-		author = "TAE Mod Team";
+		author = "Nova";
 		displayName = "Clan Kyr'am Traditional Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Kyram\TRAD_Armor_Kyram.paa",
-			"TAEGear\data\Kyram\TRAD_Brace_Kyram.paa"
+			"TAEGear\data\Kyram\TRAD_Armor_Kyram_co.paa",
+			"TAEGear\data\Kyram\TRAD_Brace_Kyram_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Kyram\TRAD_Armor_Kyram.paa",
-				"TAEGear\data\Kyram\TRAD_Brace_Kyram.paa"
+				"TAEGear\data\Kyram\TRAD_Armor_Kyram_co.paa",
+				"TAEGear\data\Kyram\TRAD_Brace_Kyram_co.paa"
 			};
 		};
 	};
@@ -998,15 +1030,15 @@ class CfgWeapons {
 		displayName = "Clan Rook Battle Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Rook\BAT_Armor_Rook.paa",
-			"TAEGear\data\Rook\BAT_Brace_Rook.paa"
+			"TAEGear\data\Rook\BAT_Armor_Rook_co.paa",
+			"TAEGear\data\Rook\BAT_Brace_Rook_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Rook\BAT_Armor_Rook.paa",
-				"TAEGear\data\Rook\BAT_Brace_Rook.paa"
+				"TAEGear\data\Rook\BAT_Armor_Rook_co.paa",
+				"TAEGear\data\Rook\BAT_Brace_Rook_co.paa"
 			};
 		};
 	};
@@ -1018,15 +1050,15 @@ class CfgWeapons {
 		displayName = "Hades' War Chief Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Hades\WAR_Armor_Hades.paa",
-			"TAEGear\data\Hades\WAR_Brace_Hades.paa"
+			"TAEGear\data\Hades\WAR_Armor_Hades_co.paa",
+			"TAEGear\data\Hades\WAR_Brace_Hades_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Hades\WAR_Armor_Hades.paa",
-				"TAEGear\data\Hades\WAR_Brace_Hades.paa"
+				"TAEGear\data\Hades\WAR_Armor_Hades_co.paa",
+				"TAEGear\data\Hades\WAR_Brace_Hades_co.paa"
 			};
 		};
 	};
@@ -1038,15 +1070,15 @@ class CfgWeapons {
 		displayName = "Andora's Nite Owl Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Andora\NITE_Armor_Andora.paa",
-			"TAEGear\data\Andora\NITE_Brace_Andora.paa"
+			"TAEGear\data\Andora\NITE_Armor_Andora_co.paa",
+			"TAEGear\data\Andora\NITE_Brace_Andora_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Andora\NITE_Armor_Andora.paa",
-				"TAEGear\data\Andora\NITE_Brace_Andora.paa"
+				"TAEGear\data\Andora\NITE_Armor_Andora_co.paa",
+				"TAEGear\data\Andora\NITE_Brace_Andora_co.paa"
 			};
 		};
 	};
@@ -1058,13 +1090,13 @@ class CfgWeapons {
 		displayName = "Goostivool's Armor";
 		hiddenSelections[] = {"camo1"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Goostivool\LS_Armor_Goostivool.paa"
+			"TAEGear\data\Goostivool\LS_Armor_Goostivool_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Goostivool\LS_Armor_Goostivool.paa"
+				"TAEGear\data\Goostivool\LS_Armor_Goostivool_co.paa"
 			};
 		};
 	};
@@ -1076,15 +1108,15 @@ class CfgWeapons {
 		displayName = "Shen's Arbiter Armor";
 		hiddenSelections[] = {"camo1","camo2"};
 		hiddenSelectionsTextures[] = {
-			"TAEGear\data\Shen\ARB_Armor_Shen.paa",
-			"TAEGear\data\Shen\ARB_Brace_Shen.paa"
+			"TAEGear\data\Shen\ARB_Armor_Shen_co.paa",
+			"TAEGear\data\Shen\ARB_Brace_Shen_co.paa"
 		};
 
 		class ItemInfo : ItemInfo {
 			hiddenSelections[] = {"camo1","camo2"};
 			hiddenSelectionsTextures[] = {
-				"TAEGear\data\Shen\ARB_Armor_Shen.paa",
-				"TAEGear\data\Shen\ARB_Brace_Shen.paa"
+				"TAEGear\data\Shen\ARB_Armor_Shen_co.paa",
+				"TAEGear\data\Shen\ARB_Brace_Shen_co.paa"
 			};
 		};
 	};

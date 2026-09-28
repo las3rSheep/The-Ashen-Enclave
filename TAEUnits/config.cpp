@@ -9,6 +9,7 @@ class CfgPatches {
 			"ace_medical_treatment",
 			"cba_xeh",
 			"ls_common",
+			"ls_weapons_mpl",
 			"TAEUniforms",
 			"TAEGear_Armors_Customs",
 			"TAEGear_Helmets_Customs",
@@ -42,15 +43,10 @@ class CfgPatches {
 			"TAE_Unit_CQC_Specialist",
 			"TAE_Unit_Heavy_Weapons",
 			"TAE_Unit_Sniper",
-			"TAE_Unit_Player_Acklay",
-			"TAE_Unit_Player_Foxx",
-			"TAE_Unit_Player_Kyram",
-			"TAE_Unit_Player_Haranverd",
-			"TAE_Unit_Player_Rook",
-			"TAE_Unit_Player_Varen",
+			"TAE_Unit_Player_Mandalorian_LS",
+			"TAE_Unit_Player_Mandalorian_TGF",
 			"TAE_Unit_Player_Shyyyo",
 			"TAE_Unit_Player_Foundling",
-			"TAE_Unit_Player_Freelancer",
 			"TAE_Unit_BSC_Rifleman",
 			"TAE_Unit_BSC_Heavy_Gunner",
 			"TAE_Unit_BSC_Grenadier",
@@ -255,19 +251,24 @@ class CfgVehicles {
 	class JMSLLTE_O_veh_AA2_reb_F;
 	class JMSLLTE_O_veh_AA2mk2_reb_F;
 	class JMSLLTE_vehgr_ATST_reb_F;
-	class JMSLLTE_YwingA4_veh_F {
+	class JMSLLTE_YwingA4_base_F;
+	class JMSLLTE_YwingA4_veh_F: JMSLLTE_YwingA4_base_F {
 		class Components;
 	};
-	class JMSLLTE_UwingHeli_Reb_F {
+	class JMSLLTE_UwingHeli_inf;
+	class JMSLLTE_UwingHeli_Reb_F: JMSLLTE_UwingHeli_inf {
 		class Components;
 	};
-	class JMSLLTE_XwingCA2_NR_veh_F {
+	class JMSLLTE_XwingCA2_base_F;
+	class JMSLLTE_XwingCA2_NR_veh_F: JMSLLTE_XwingCA2_base_F {
 		class Components;
 	};
-	class JMSLLTE_XwingT70_veh_F {
+	class JMSLLTE_XwingT70_base_F;
+	class JMSLLTE_XwingT70_veh_F: JMSLLTE_XwingT70_base_F {
 		class Components;
 	};
-	class JMSLLTE_Awing_NR_veh_F {
+	class JMSLLTE_Awing_base_F;
+	class JMSLLTE_Awing_NR_veh_F: JMSLLTE_Awing_base_F {
 		class Components;
 	};
 
@@ -453,7 +454,7 @@ class CfgVehicles {
 		author = "TAE Mod Team";
 		faction = "TAE_Faction_HouseKarr";
 		editorSubcategory = "TAE_EdSubcat_HouseKarr_Infantry";
-		editorPreview = "\TAEUnits\data\previews\Karr.paa";
+		editorPreview = "\TAEUnits\data\previews\Karr_ca.paa";
 		side = 2;
 		genericNames = "TAE_GenericNames_HouseKarr";
 
@@ -610,10 +611,10 @@ class CfgVehicles {
 		respawnItems[] = {};
 	};
 
-	class TAE_Unit_Player_Acklay: TAE_Unit_Player_Base {
+	class TAE_Unit_Player_Mandalorian_LS: TAE_Unit_Player_Base {
 		scope = 2;
 		scopeCurator = 0;
-		displayName = "Clan Acklay Member";
+		displayName = "Mandalorian (LS)";
 
 		identityTypes[] = {
 			"LanguageENG_F",
@@ -638,10 +639,10 @@ class CfgVehicles {
 		respawnItems[] = {};
 	};
 
-	class TAE_Unit_Player_Foxx: TAE_Unit_Player_Base {
+	class TAE_Unit_Player_Mandalorian_TGF: TAE_Unit_Player_Base {
 		scope = 2;
 		scopeCurator = 0;
-		displayName = "Clan Foxx Member";
+		displayName = "Mandalorian (TGF)";
 		identityTypes[] = {
 			"LanguageENG_F",
 			"Head_NATO",
@@ -657,97 +658,6 @@ class CfgVehicles {
 			"ItemMap",
 			"ls_radios_hush98"
 		};
-	};
-
-	class TAE_Unit_Player_Kyram: TAE_Unit_Player_Base {
-		scope = 2;
-		scopeCurator = 0;
-		displayName = "Clan Kyr'am Member";
-		identityTypes[] = {
-			"LanguageENG_F",
-			"Head_NATO",
-			"TAE_NoFacewear"
-		};
-		goggles = "TAE_NoFacewear";
-		uniformClass = "tae_uniform_grey_seal";
-		linkedItems[] = {
-			"ItemMap",
-			"ls_radios_hush98"
-		};
-		respawnLinkedItems[] = {
-			"ItemMap",
-			"ls_radios_hush98"
-		};
-	};
-
-	class TAE_Unit_Player_Haranverd: TAE_Unit_Player_Base {
-		scope = 2;
-		scopeCurator = 0;
-		displayName = "Clan Haranverd Member";
-		identityTypes[] = {
-			"LanguageENG_F",
-			"Head_NATO",
-			"TAE_NoFacewear"
-		};
-		goggles = "TAE_NoFacewear";
-		uniformClass = "tae_uniform_grey_seal";
-		linkedItems[] = {
-			"ItemMap",
-			"ls_radios_hush98"
-		};
-		respawnLinkedItems[] = {
-			"ItemMap",
-			"ls_radios_hush98"
-		};
-	};
-
-	class TAE_Unit_Player_Rook: TAE_Unit_Player_Base {
-		scope = 2;
-		scopeCurator = 0;
-		displayName = "Clan Rook Member";
-		identityTypes[] = {
-			"LanguageENG_F",
-			"Head_NATO",
-			"TAE_NoFacewear"
-		};
-		goggles = "TAE_NoFacewear";
-		uniformClass = "tae_uniform_grey_seal";
-		linkedItems[] = {
-			"ItemMap",
-			"ls_radios_hush98"
-		};
-		respawnLinkedItems[] = {
-			"ItemMap",
-			"ls_radios_hush98"
-		};
-	};
-
-	class TAE_Unit_Player_Varen: TAE_Unit_Player_Base {
-		scope = 2;
-		scopeCurator = 0;
-		displayName = "Clan Varen Member";
-
-		identityTypes[] = {
-			"LanguageENG_F",
-			"Head_NATO",
-			"TAE_NoFacewear"
-		};
-		goggles = "TAE_NoFacewear";
-		uniformClass = "tae_uniform_black_seal";
-		weapons[] = {};
-		respawnWeapons[] = {};
-		magazines[] = {};
-		respawnMagazines[] = {};
-		linkedItems[] = {
-			"ItemMap",
-			"ls_radios_hush98"
-		};
-		respawnLinkedItems[] = {
-			"ItemMap",
-			"ls_radios_hush98"
-		};
-		items[] = {};
-		respawnItems[] = {};
 	};
 
 	class TAE_Unit_Player_Shyyyo: TAE_Unit_Player_Base {
@@ -1055,27 +965,6 @@ class CfgVehicles {
 			"MTI_BactaSpray",
 			"ACE_painkillers",
 			"ACE_painkillers"
-		};
-	};
-
-	class TAE_Unit_Player_Freelancer: TAE_Unit_Player_Base {
-		scope = 2;
-		scopeCurator = 0;
-		displayName = "Freelancer";
-		identityTypes[] = {
-			"LanguageENG_F",
-			"Head_NATO",
-			"TAE_NoFacewear"
-		};
-		goggles = "TAE_NoFacewear";
-		uniformClass = "tae_uniform_grey_seal";
-		linkedItems[] = {
-			"ItemMap",
-			"ls_radios_hush98"
-		};
-		respawnLinkedItems[] = {
-			"ItemMap",
-			"ls_radios_hush98"
 		};
 	};
 
@@ -3479,14 +3368,14 @@ class CfgVehicles {
 		backpack = "tae_modular_pack";
 		goggles = "tgf_facewear_medium_belt";
 		weapons[] = {
-			"tae_IQA12",
+			"tae_IQA11a",
 			"LFP_Westar_35",
 			"JMSLLTE_W_TD23_white_F",
 			"Throw",
 			"Put"
 		};
 		respawnWeapons[] = {
-			"tae_IQA12",
+			"tae_IQA11a",
 			"LFP_Westar_35",
 			"JMSLLTE_W_TD23_white_F",
 			"Throw",
@@ -3749,7 +3638,7 @@ class CfgVehicles {
 		author = "TAE Mod Team";
 		faction = "TAE_Faction_Criminals";
 		editorSubcategory = "TAE_EdSubcat_BlackSpireCartel";
-		editorPreview = "\TAEUnits\data\previews\Karr.paa";
+		editorPreview = "\TAEUnits\data\previews\Karr_ca.paa";
 		side = 2;
 		genericNames = "TAE_GenericNames_HouseKarr";
 		identityTypes[] = {"LanguageENG_F","Head_NATO","TAE_NoFacewear"};
@@ -4248,7 +4137,7 @@ class CfgVehicles {
 		author = "TAE Mod Team";
 		faction = "TAE_Faction_NihilRaiders";
 		editorSubcategory = "TAE_EdSubcat_NihilRaiders";
-		editorPreview = "\TAEUnits\data\previews\Karr.paa";
+		editorPreview = "\TAEUnits\data\previews\Karr_ca.paa";
 		side = 0;
 		genericNames = "TAE_GenericNames_HouseKarr";
 		identityTypes[] = {"LanguageENG_F","Head_NATO","TAE_NoFacewear"};
@@ -4330,8 +4219,23 @@ class CfgVehicles {
 		uniformClass = "JMSLLTE_HuttHeavy_brown_F_CombatUniform";
 		weapons[] = {"ls_weapon_mpl57","Throw","Put"};
 		respawnWeapons[] = {"ls_weapon_mpl57","Throw","Put"};
-		magazines[] = {"ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF"};
-		respawnMagazines[] = {"ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF","ls_magazine_3Rnd_40mw_G76_HEF"};
+		// Updated LS MPL uses single-round magazines; retain the 30-round supply.
+		magazines[] = {
+			"ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF",
+			"ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF",
+			"ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF",
+			"ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF",
+			"ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF",
+			"ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF"
+		};
+		respawnMagazines[] = {
+			"ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF",
+			"ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF",
+			"ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF",
+			"ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF",
+			"ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF",
+			"ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF","ls_magazine_40mm_G76_HEF"
+		};
 		linkedItems[] = {"LST_DSI_Vest_V1_Armor","SFA_Combat_Eng_Helmet","ItemMap","ItemRadio","ItemCompass","ItemWatch"};
 		respawnLinkedItems[] = {"LST_DSI_Vest_V1_Armor","SFA_Combat_Eng_Helmet","ItemMap","ItemRadio","ItemCompass","ItemWatch"};
 		items[] = {"FirstAidKit","JMSLLTE_thermaldetonator_HandGrenade","JMSLLTE_thermaldetonator_HandGrenade"};
@@ -4702,7 +4606,7 @@ class CfgVehicles {
 		displayName = "Civilian (Random)";
 		faction = "TAE_Faction_Civilians";
 		editorSubcategory = "TAE_EdSubcat_Civilians";
-		editorPreview = "\TAEUnits\data\previews\Karr.paa";
+		editorPreview = "\TAEUnits\data\previews\Karr_ca.paa";
 		side = 3;
 		identityTypes[] = {"LanguageENG_F","Head_NATO","NoGlasses"};
 		icon = "iconMan";

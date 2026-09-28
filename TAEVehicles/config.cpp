@@ -4,6 +4,8 @@ class CfgPatches {
 		author = "TAE Mod Team";
 		requiredAddons[] = {
 			"A3_Data_F_Loadorder",
+			"3AS_Vwing",
+			"3AS_Rebel_Armor_PX10",
 			"ace_cargo",
 			"ace_missileguidance",
 			"KND_Komrk",
@@ -11,15 +13,24 @@ class CfgPatches {
 			"TAEObjects",
 			"TAEUnits_HouseKarr",
 			"mti_armoury_vehicles_weapons",
+			"mti_armoury_vehicles_delta",
+			"mti_armoury_vehicles_barc",
+			"mti_armoury_statics_stretcher",
 			"ls_vehicles_z98",
 			"knd_jdumb"
 		};
 		units[] = {
+			"TAE_PX10_R3",
+			"TAE_VWing",
 			"TAE_KomrkFighter_Transport",
 			"TAE_Skycat_Transport",
-			"TAE_Z98_Headhunter"
+			"TAE_Z98_Headhunter",
+			"TAE_Delta7_Interceptor",
+			"TAE_BARC_Stretcher"
 		};
 		weapons[] = {
+			"TAE_BARC_Repeater",
+			"TAE_weapon_AA_Cannon",
 			"TAE_Skycat_weapon_MPR10",
 			"TAE_Skycat_weapon_Talon",
 			"TAE_Skycat_weapon_Firebrand",
@@ -40,6 +51,9 @@ class CfgPatches {
 };
 
 class CfgEditorSubcategories {
+	class TAE_EdSubcat_HouseKarr_Speeders {
+		displayName = "Speeders";
+	};
 	class TAE_EdSubcat_HouseKarr_Aircraft {
 		displayName = "Aircraft";
 	};
@@ -49,14 +63,33 @@ class CfgFunctions {
 	class TAE {
 		class Vehicles {
 			file = "\TAEVehicles\functions";
-			class boardRecoveredPlayer {};
-			class recoverAirbornePlayers {};
-			class showRecoveryMessage {};
+			class initBarcStretcher { postInit = 1; };
 		};
 	};
 };
 
 class CfgWeapons {
+	class CannonCore;
+	class mti_armoury_weapon_AA_Cannon;
+	class TAE_weapon_AA_Cannon: mti_armoury_weapon_AA_Cannon {
+		// Target lead and predicted impact indicators, without automatic aim adjustment.
+		ballisticsComputer = 4 + 8;
+	};
+	class 3AS_BARC_Repeater: CannonCore {
+		class manual;
+		class close;
+		class short;
+		class medium;
+		class far;
+	};
+	class TAE_BARC_Repeater: 3AS_BARC_Repeater {
+		// Half the original 0.3-second interval; retain AI burst patterns.
+		class manual: manual { reloadTime = 0.15; };
+		class close: close { reloadTime = 0.15; };
+		class short: short { reloadTime = 0.15; };
+		class medium: medium { reloadTime = 0.15; };
+		class far: far { reloadTime = 0.15; };
+	};
 	class mti_armoury_weapon_AA_Missile_Light_Pylon;
 	class mti_armoury_weapon_AA_Short_Missile_Pylon;
 	class mti_armoury_weapon_AA_Long_Missile_Pylon;
@@ -179,7 +212,164 @@ class CfgWeapons {
 		};
 	};
 };
+class SensorTemplateActiveRadar;
 class CfgAmmo {
+	class mti_armoury_ammo_AA_Base_Ammo;
+	class mti_armoury_ammo_AA_Ammo_Light: mti_armoury_ammo_AA_Base_Ammo {
+		class Components {
+			class SensorsManagerComponent {
+				class Components {
+					class IRSensorComponent;
+				};
+			};
+		};
+	};
+	class TAE_ammo_Talon: mti_armoury_ammo_AA_Ammo_Light {
+		maxSpeed = 700;
+		maneuvrability = 40;
+		missileLockMaxDistance = 1500;
+		weaponLockSystem = 2 + 8;
+		class Components: Components {
+			class SensorsManagerComponent: SensorsManagerComponent {
+				class Components: Components {
+					class ActiveRadarSensorComponent: SensorTemplateActiveRadar {
+						class AirTarget {
+							minRange = 15000;
+							maxRange = 15000;
+							objectDistanceLimitCoef = -1;
+							viewDistanceLimitCoef = -1;
+						};
+						class GroundTarget: AirTarget {};
+						angleRangeHorizontal = 150;
+						angleRangeVertical = 150;
+						groundNoiseDistanceCoef = -1;
+						maxGroundNoiseDistance = -1;
+						minSpeedThreshold = 0;
+						maxSpeedThreshold = 0;
+						minTrackableATL = -1000000;
+						maxTrackableATL = 1000000;
+					};
+					class IRSensorComponent: IRSensorComponent {
+						// 10x sensitivity compensates for low IR signatures; lock distance stays capped.
+						class AirTarget {
+							minRange = 15000;
+							maxRange = 15000;
+							objectDistanceLimitCoef = -1;
+							viewDistanceLimitCoef = -1;
+						};
+						class GroundTarget: AirTarget {};
+						groundNoiseDistanceCoef = -1;
+						maxGroundNoiseDistance = -1;
+						minTrackableATL = -1000000;
+						maxTrackableATL = 1000000;
+					};
+				};
+			};
+		};
+	};
+	class mti_armoury_ammo_AA_Ammo_Short: mti_armoury_ammo_AA_Base_Ammo {
+		class Components {
+			class SensorsManagerComponent {
+				class Components {
+					class IRSensorComponent;
+				};
+			};
+		};
+	};
+	class TAE_ammo_Pursuit: mti_armoury_ammo_AA_Ammo_Short {
+		thrust = 600;
+		missileLockMaxDistance = 6000;
+		weaponLockSystem = 2 + 8;
+		class Components: Components {
+			class SensorsManagerComponent: SensorsManagerComponent {
+				class Components: Components {
+					class ActiveRadarSensorComponent: SensorTemplateActiveRadar {
+						class AirTarget {
+							minRange = 60000;
+							maxRange = 60000;
+							objectDistanceLimitCoef = -1;
+							viewDistanceLimitCoef = -1;
+						};
+						class GroundTarget: AirTarget {};
+						angleRangeHorizontal = 150;
+						angleRangeVertical = 150;
+						groundNoiseDistanceCoef = -1;
+						maxGroundNoiseDistance = -1;
+						minSpeedThreshold = 0;
+						maxSpeedThreshold = 0;
+						minTrackableATL = -1000000;
+						maxTrackableATL = 1000000;
+					};
+					class IRSensorComponent: IRSensorComponent {
+						// 10x sensitivity compensates for low IR signatures; lock distance stays capped.
+						class AirTarget {
+							minRange = 60000;
+							maxRange = 60000;
+							objectDistanceLimitCoef = -1;
+							viewDistanceLimitCoef = -1;
+						};
+						class GroundTarget: AirTarget {};
+						groundNoiseDistanceCoef = -1;
+						maxGroundNoiseDistance = -1;
+						minTrackableATL = -1000000;
+						maxTrackableATL = 1000000;
+					};
+				};
+			};
+		};
+	};
+	class mti_armoury_ammo_AA_Missile_Long: mti_armoury_ammo_AA_Base_Ammo {
+		class Components {
+			class SensorsManagerComponent {
+				class Components {
+					class IRSensorComponent;
+				};
+			};
+		};
+	};
+	class TAE_ammo_Longspear: mti_armoury_ammo_AA_Missile_Long {
+		maneuvrability = 15;
+		maxSpeed = 2222.222222; // 8000 km/h
+		missileLockMaxDistance = 12000;
+		weaponLockSystem = 2 + 8;
+		class Components: Components {
+			class SensorsManagerComponent: SensorsManagerComponent {
+				class Components: Components {
+					class ActiveRadarSensorComponent: SensorTemplateActiveRadar {
+						class AirTarget {
+							minRange = 120000;
+							maxRange = 120000;
+							objectDistanceLimitCoef = -1;
+							viewDistanceLimitCoef = -1;
+						};
+						class GroundTarget: AirTarget {};
+						angleRangeHorizontal = 190;
+						angleRangeVertical = 190;
+						groundNoiseDistanceCoef = -1;
+						maxGroundNoiseDistance = -1;
+						minSpeedThreshold = 0;
+						maxSpeedThreshold = 0;
+						minTrackableATL = -1000000;
+						maxTrackableATL = 1000000;
+					};
+					class IRSensorComponent: IRSensorComponent {
+						// 10x sensitivity compensates for low IR signatures; lock distance stays capped.
+						class AirTarget {
+							minRange = 120000;
+							maxRange = 120000;
+							objectDistanceLimitCoef = -1;
+							viewDistanceLimitCoef = -1;
+						};
+						class GroundTarget: AirTarget {};
+						groundNoiseDistanceCoef = -1;
+						maxGroundNoiseDistance = -1;
+						minTrackableATL = -1000000;
+						maxTrackableATL = 1000000;
+					};
+				};
+			};
+		};
+	};
 	class ACE_Hydra70_DAGR;
 	class mti_armoury_ammo_AGM_Missile;
 
@@ -216,8 +406,8 @@ class CfgMagazines {
 	class knd_pylonrack_jdumb;
 
 	class TAE_Skycat_mag_MPR10: PylonRack_24Rnd_ACE_DAGR {
-		displayName = "MPR-10 Guided Proton Rockets (10-Round)";
-		displayNameShort = "MPR-10 (10)";
+		displayName = "MPR-10 Guided Proton Rockets";
+		displayNameShort = "MPR-10";
 		descriptionShort = "Ten guided proton rockets for precision attacks against vehicles and hardened ground targets.";
 		ammo = "TAE_Skycat_ammo_MPR10";
 		count = 10;
@@ -228,8 +418,8 @@ class CfgMagazines {
 	};
 
 	class TAE_Komrk_mag_Hammers: mti_armoury_mag_AGM_Mag {
-		displayName = "Firebrand Proton Missile (3-Round)";
-		displayNameShort = "Firebrand (3)";
+		displayName = "Firebrand Proton Missile";
+		displayNameShort = "Firebrand";
 		descriptionShort = "Firebrand is an infrared- and laser-guided proton missile for air-to-ground strikes, with a maximum lock range of 5 kilometers.";
 		ammo = "TAE_Firebrand_ammo_IRLaser";
 		count = 3;
@@ -240,8 +430,9 @@ class CfgMagazines {
 	};
 
 	class TAE_Komrk_mag_Lightning: mti_armoury_mag_AA_Light_Mag {
-		displayName = "Talon Interceptor (3-Round)";
-		displayNameShort = "Talon (3)";
+		ammo = "TAE_ammo_Talon";
+		displayName = "Talon Interceptor";
+		displayNameShort = "Talon";
 		descriptionShort = "Talon is a short-range anti-air interceptor missile with a maximum lock range of 1.5 kilometers.";
 		count = 3;
 		hardpoints[] = {
@@ -251,8 +442,9 @@ class CfgMagazines {
 	};
 
 	class TAE_Komrk_mag_Typhoon: mti_armoury_mag_AA_Short_Mag {
-		displayName = "Pursuit Concussion (3-Round)";
-		displayNameShort = "Pursuit (3)";
+		ammo = "TAE_ammo_Pursuit";
+		displayName = "Pursuit Concussion";
+		displayNameShort = "Pursuit";
 		descriptionShort = "Pursuit is a medium-range concussion missile for general anti-air engagements, with a maximum lock range of 6 kilometers.";
 		count = 3;
 		hardpoints[] = {
@@ -262,9 +454,10 @@ class CfgMagazines {
 	};
 
 	class TAE_Komrk_mag_Hurricane: mti_armoury_mag_AA_Long_Mag {
-		displayName = "Longspear (3-Round)";
-		displayNameShort = "Longspear (3)";
-		descriptionShort = "Longspear is a long-range anti-air missile intended to engage distant aircraft.";
+		ammo = "TAE_ammo_Longspear";
+		displayName = "Longspear";
+		displayNameShort = "Longspear";
+		descriptionShort = "Longspear is a long-range anti-air missile with a maximum lock range of 12 kilometers.";
 		count = 3;
 		hardpoints[] = {
 			"TAE_KOMRK_HP_AA"
@@ -273,8 +466,8 @@ class CfgMagazines {
 	};
 
 	class TAE_Komrk_mag_Stalkers: mti_armoury_mag_HARM_Missile_Mag {
-		displayName = "Wraith Anti-Radiation (3-Round)";
-		displayNameShort = "Wraith (3)";
+		displayName = "Wraith Anti-Radiation";
+		displayNameShort = "Wraith";
 		descriptionShort = "Wraith is an anti-radiation missile designed to engage active emitters.";
 		count = 3;
 		hardpoints[] = {
@@ -305,8 +498,9 @@ class CfgMagazines {
 	};
 
 	class TAE_Z98_mag_Lightning: mti_armoury_mag_AA_Light_Mag {
-		displayName = "Talon Interceptor (3-Round)";
-		displayNameShort = "Talon (3)";
+		ammo = "TAE_ammo_Talon";
+		displayName = "Talon Interceptor";
+		displayNameShort = "Talon";
 		descriptionShort = "Talon is a short-range anti-air interceptor missile with a maximum lock range of 1.5 kilometers.";
 		count = 3;
 		hardpoints[] = {
@@ -316,8 +510,9 @@ class CfgMagazines {
 	};
 
 	class TAE_Z98_mag_Typhoon: mti_armoury_mag_AA_Short_Mag {
-		displayName = "Pursuit Concussion (3-Round)";
-		displayNameShort = "Pursuit (3)";
+		ammo = "TAE_ammo_Pursuit";
+		displayName = "Pursuit Concussion";
+		displayNameShort = "Pursuit";
 		descriptionShort = "Pursuit is a medium-range concussion missile for general anti-air engagements, with a maximum lock range of 6 kilometers.";
 		count = 3;
 		hardpoints[] = {
@@ -328,9 +523,10 @@ class CfgMagazines {
 	};
 
 	class TAE_Z98_mag_Hurricane: mti_armoury_mag_AA_Long_Mag {
-		displayName = "Longspear (3-Round)";
-		displayNameShort = "Longspear (3)";
-		descriptionShort = "Longspear is a long-range anti-air missile intended to engage distant aircraft.";
+		ammo = "TAE_ammo_Longspear";
+		displayName = "Longspear";
+		displayNameShort = "Longspear";
+		descriptionShort = "Longspear is a long-range anti-air missile with a maximum lock range of 12 kilometers.";
 		count = 3;
 		hardpoints[] = {
 			"TAE_Z98_HP_MIDDLE",
@@ -340,8 +536,8 @@ class CfgMagazines {
 	};
 
 	class TAE_Z98_mag_Hammers: mti_armoury_mag_AGM_Mag {
-		displayName = "Firebrand Proton Missile (3-Round)";
-		displayNameShort = "Firebrand (3)";
+		displayName = "Firebrand Proton Missile";
+		displayNameShort = "Firebrand";
 		descriptionShort = "Firebrand is an infrared- and visual-guided proton missile for air-to-ground strikes, with a maximum lock range of 5 kilometers.";
 		ammo = "TAE_Z98_ammo_Hammers";
 		count = 3;
@@ -353,8 +549,8 @@ class CfgMagazines {
 	};
 
 	class TAE_Z98_mag_Stalkers: mti_armoury_mag_HARM_Missile_Mag {
-		displayName = "Wraith Anti-Radiation (3-Round)";
-		displayNameShort = "Wraith (3)";
+		displayName = "Wraith Anti-Radiation";
+		displayNameShort = "Wraith";
 		descriptionShort = "Wraith is an anti-radiation missile designed to engage active emitters.";
 		count = 3;
 		hardpoints[] = {
@@ -373,22 +569,408 @@ class CfgMagazines {
 	};
 };
 
-class SensorTemplateActiveRadar;
 class DefaultVehicleSystemsDisplayManagerLeft;
 class DefaultVehicleSystemsDisplayManagerRight;
 
 class CfgVehicles {
+	class 3AS_PX10_F;
+	class 3AS_PX10_IMP_F: 3AS_PX10_F {
+		class AnimationSources;
+	};
+	class 3AS_PX10_IMP_R3: 3AS_PX10_IMP_F {
+		class AnimationSources: AnimationSources {
+			class HideAttachmentDozer;
+			class HideAttachmentFuel;
+			class HideAttachmentPlate;
+			class HideAttachmentRepair;
+		};
+	};
+	class TAE_PX10_R3: 3AS_PX10_IMP_R3 {
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "House Karr PX-10 CAV (R3)";
+		author = "3AS Studio and Edonn";
+		faction = "TAE_Faction_HouseKarr";
+		editorSubcategory = "TAE_EdSubcat_HouseKarr_Speeders";
+		side = 2;
+		crew = "TAE_Unit_Engineer";
+		typicalCargo[] = {"TAE_Unit_Engineer"};
+		hiddenSelectionsTextures[] = {
+			"\TAEVehicles\data\px10\px10cav_imp_co.paa",
+			"\TAEVehicles\data\px10\px10cavintback_co.paa",
+			"\TAEVehicles\data\px10\px10cavintfront_co.paa",
+			"\TAEVehicles\data\px10\px10fuel_imp_co.paa",
+			"\TAEVehicles\data\px10\px10crane_co.paa"
+		};
+		textureList[] = {"HouseKarr", 1};
+		class TextureSources {
+			class HouseKarr {
+				displayName = "House Karr";
+				author = "3AS Studio and Edonn";
+				textures[] = {
+					"\TAEVehicles\data\px10\px10cav_imp_co.paa",
+					"\TAEVehicles\data\px10\px10cavintback_co.paa",
+					"\TAEVehicles\data\px10\px10cavintfront_co.paa",
+					"\TAEVehicles\data\px10\px10fuel_imp_co.paa",
+					"\TAEVehicles\data\px10\px10crane_co.paa"
+				};
+				factions[] = {"TAE_Faction_HouseKarr"};
+			};
+		};
+		animationList[] = {"HideAttachmentDozer",0,"HideAttachmentFuel",0,"HideAttachmentPlate",0,"HideAttachmentRepair",0};
+		class AnimationSources: AnimationSources {
+			class HideAttachmentDozer: HideAttachmentDozer { displayName = ""; initPhase = 0; };
+			class HideAttachmentFuel: HideAttachmentFuel { displayName = ""; initPhase = 0; };
+			class HideAttachmentPlate: HideAttachmentPlate { displayName = ""; initPhase = 0; };
+			class HideAttachmentRepair: HideAttachmentRepair { displayName = ""; initPhase = 0; };
+		};
+	};
+	class Plane_Fighter_03_base_F;
+	class 3AS_Vwing_base: Plane_Fighter_03_base_F {
+		class Components {
+			class SensorsManagerComponent {
+				class Components {
+					class ActiveRadarSensorComponent;
+				};
+			};
+		};
+	};
+	class TAE_VWing: 3AS_Vwing_base {
+		weapons[] = {"mti_armoury_weapon_AA_Cannon", "ls_weapon_CMFlareLauncher", "Laserdesignator_pilotCamera"};
+		magazines[] = {
+			"mti_armoury_mag_AA_Cannon_Mag",
+			"mti_armoury_mag_AA_Cannon_Mag",
+			"ls_mag_240Rnd_CMFlareChaff_purple",
+			"ls_mag_240Rnd_CMFlareChaff_purple",
+			"ls_mag_240Rnd_CMFlareChaff_purple",
+			"ls_mag_240Rnd_CMFlareChaff_purple",
+			"ls_mag_240Rnd_CMFlareChaff_purple",
+			"Laserbatteries"
+		};
+		class Components: Components {
+			class SensorsManagerComponent: SensorsManagerComponent {
+				class Components: Components {
+					class ActiveRadarSensorComponent: ActiveRadarSensorComponent {
+						angleRangeHorizontal = 360;
+						angleRangeVertical = 360;
+					};
+				};
+			};
+			class TransportPylonsComponent {
+				UIPicture = "3as\3as_z95\data\plane_z95_pylon_ca.paa";
+				class pylons {
+					class pylons1 {
+						hardpoints[] = {"TAE_KOMRK_HP_AA"};
+						attachment = "TAE_Komrk_mag_Typhoon";
+						maxWeight = 5000;
+						priority = 10;
+						turret[] = {};
+						UIposition[] = {0.6,0.45};
+					};
+					class pylons2: pylons1 { UIposition[] = {0.05,0.45}; mirroredMissilePos = 1; };
+					class pylons3: pylons1 {
+						hardpoints[] = {"TAE_KOMRK_HP_HAMMERS", "mti_armoury_weapon_Bomb_Pylon"};
+						attachment = "TAE_Komrk_mag_Hammers";
+						UIposition[] = {0.55,0.35};
+					};
+					class pylons4: pylons3 { UIposition[] = {0.1,0.35}; mirroredMissilePos = 3; };
+					class pylons5: pylons3 {
+						attachment = "mti_armoury_mag_Smart_Bomb_Mag_Light";
+						UIposition[] = {0.5,0.25};
+					};
+					class pylons6: pylons5 { UIposition[] = {0.15,0.25}; mirroredMissilePos = 5; };
+				};
+				class presets {
+					class Empty { displayName = "Empty"; attachment[] = {}; };
+					class Default {
+						displayName = "House Karr Mixed";
+						attachment[] = {"TAE_Komrk_mag_Typhoon", "TAE_Komrk_mag_Typhoon", "TAE_Komrk_mag_Hammers", "TAE_Komrk_mag_Hammers", "mti_armoury_mag_Smart_Bomb_Mag_Light", "mti_armoury_mag_Smart_Bomb_Mag_Light"};
+					};
+				};
+			};
+		};
+		// Match the airbrakes inherited by TAE's Delta-7 from MTI.
+		airBrake = 55;
+		airBrakeFrictionCoef = 60;
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "House Karr V-wing Starfighter";
+		author = "3rd Army Studios, MokTech Industries and Edonn";
+		side = 2;
+		faction = "TAE_Faction_HouseKarr";
+		editorSubcategory = "TAE_EdSubcat_HouseKarr_Aircraft";
+		crew = "TAE_Unit_Pilot";
+		typicalCargo[] = {"TAE_Unit_Pilot"};
+		hiddenSelectionsTextures[] = {
+			"\TAEVehicles\data\vwing\vwing_main_co.paa",
+			"\TAEVehicles\data\vwing\vwing_astromechdroid_co.paa",
+			"\TAEVehicles\data\vwing\vwing_wings_co.paa"
+		};
+		textureList[] = {"TAE_HouseKarr", 1};
+		class TextureSources {
+			class TAE_HouseKarr {
+				displayName = "House Karr";
+				author = "3rd Army Studios and Edonn";
+				textures[] = {
+					"\TAEVehicles\data\vwing\vwing_main_co.paa",
+					"\TAEVehicles\data\vwing\vwing_astromechdroid_co.paa",
+					"\TAEVehicles\data\vwing\vwing_wings_co.paa"
+				};
+				factions[] = {"TAE_Faction_HouseKarr"};
+			};
+		};
+	};
+	class BARC_Base;
+	class 3AS_BARC_Base: BARC_Base {
+		class Sounds;
+		class Wheels {
+			class LF;
+			class LR;
+			class RF;
+			class RR;
+		};
+		class PlayerSteeringCoefficients;
+	};
+	class 3AS_Barc_501: 3AS_BARC_Base {};
+	class 3AS_Barc: 3AS_Barc_501 {};
+	class mti_armoury_vehicles_barc_base: 3AS_Barc {};
+	class mti_armoury_vehicles_barc_stretcher: mti_armoury_vehicles_barc_base {
+		class ACE_Actions {
+			class ACE_MainActions {
+				class mti_armoury_vehicles_barc_deployStretcher;
+				class mti_armoury_vehicles_barc_stowStretcher;
+			};
+		};
+		class Sounds: Sounds {};
+		class Wheels: Wheels {
+			class LF: LF {};
+			class LR: LR {};
+			class RF: RF {};
+			class RR: RR {};
+		};
+		class PlayerSteeringCoefficients: PlayerSteeringCoefficients {};
+	};
+	class TAE_BARC_Stretcher: mti_armoury_vehicles_barc_stretcher {
+		class ACE_Actions: ACE_Actions {
+			class ACE_MainActions: ACE_MainActions {
+				class mti_armoury_vehicles_barc_deployStretcher: mti_armoury_vehicles_barc_deployStretcher {
+					statement = "['TAE_barcStretcherRequest', [_target, _player, true]] call CBA_fnc_serverEvent";
+				};
+				class mti_armoury_vehicles_barc_stowStretcher: mti_armoury_vehicles_barc_stowStretcher {
+					condition = "private _stretcher = _target getVariable ['mti_armoury_vehicles_barc_stretcher', objNull]; alive _stretcher && {crew _stretcher isEqualTo []}";
+					statement = "['TAE_barcStretcherRequest', [_target, _player, false]] call CBA_fnc_serverEvent";
+				};
+			};
+		};
+		scope = 2;
+		scopeCurator = 2;
+		displayName = "House Karr BARC Speeder";
+		maxSpeed = 180;
+		class Sounds: Sounds {
+			// Upstream high-RPM layers have empty samples. Crossfade in a
+			// real BARC loop as the existing low-RPM layer fades out.
+			class TAE_EngineHigh_ext {
+				sound[] = {"3AS\3AS_LightVics\3AS_BARC\sounds\eng_barcspeeder_hi.ogg", 0.65, 1, 300};
+				frequency = "0.9 + (rpm factor[1600,3500])*0.25";
+				volume = "engineOn*camPos*(rpm factor[1600,2040])";
+			};
+			class TAE_EngineHigh_int {
+				sound[] = {"3AS\3AS_LightVics\3AS_BARC\sounds\eng_barcspeeder_hi.ogg", 1, 1};
+				frequency = "0.9 + (rpm factor[1600,3500])*0.25";
+				volume = "engineOn*(1-camPos)*(rpm factor[1600,2040])";
+			};
+		};
+		hiddenSelectionsTextures[] = {"\TAEVehicles\data\barc\barc_house_karr_co.paa"};
+		textureList[] = {"TAE_HouseKarr", 1};
+		class TextureSources {
+			class TAE_HouseKarr {
+				displayName = "House Karr";
+				author = "3rd Army Studios and Edonn";
+				textures[] = {"\TAEVehicles\data\barc\barc_house_karr_co.paa"};
+				factions[] = {"TAE_Faction_HouseKarr"};
+			};
+			class SOB {
+				displayName = "Special Operations Brigade";
+				author = "MokTech Industries";
+				textures[] = {"\z\mti_armoury\addons\vehicles\barc\data\barc_MTI_co.paa"};
+				factions[] = {"mti_faction_SOB"};
+			};
+		};
+		author = "3rd Army Studios, MokTech Industries and Edonn";
+		side = 2;
+		faction = "TAE_Faction_HouseKarr";
+		editorSubcategory = "TAE_EdSubcat_HouseKarr_Speeders";
+		crew = "TAE_Unit_Medic";
+		typicalCargo[] = {"TAE_Unit_Medic"};
+		weapons[] = {"TAE_BARC_Repeater"};
+		// Reduce rebound without changing spring stiffness or ride height.
+		class Wheels: Wheels {
+			class LF: LF { springDamperRate = 11250; };
+			class LR: LR { springDamperRate = 11250; };
+			class RF: RF { springDamperRate = 11250; };
+			class RR: RR { springDamperRate = 11250; };
+		};
+		class PlayerSteeringCoefficients: PlayerSteeringCoefficients {
+			maxTurnHundred = 0.65;
+		};
+	};
 	class Helicopter_Base_H;
 	class knd_KomrkFighter_VTOL_Dynamic_F;
 	class knd_vehicles_skycat: Helicopter_Base_H {
 		class Components;
 	};
 	class ls_vehicle_z98;
+	class Plane_Base_F;
+	class 3AS_Delta7_Base_F: Plane_Base_F {
+		class Components;
+		class TextureSources;
+	};
+	class mti_armoury_vehicles_delta_base: 3AS_Delta7_Base_F {
+		class TextureSources: TextureSources {};
+		class Components: Components {
+			class SensorsManagerComponent {
+				class Components;
+			};
+			class TransportPylonsComponent {
+				class pylons {
+					class pylons1;
+					class pylons2;
+					class pylons3;
+					class pylons4;
+				};
+				class presets;
+			};
+		};
+	};
+
+	class TAE_Delta7_Interceptor: mti_armoury_vehicles_delta_base {
+		scope = 2;
+		scopeCurator = 2;
+		flaps = 0;
+		flapsFrictionCoef = 0;
+		displayName = "House Karr Delta-7 ""Ashwing""";
+		displayNameShort = "Delta-7 ""Ashwing""";
+		hiddenSelectionsTextures[] = {
+			"\TAEVehicles\data\delta7\DEL7_Hull_Purple_DarkRed_co.paa",
+			"3AS\3AS_Delta7\data\Delta7_Landing_Gear_co.paa",
+			"3AS\3AS_Delta7\data\Delta7_Cockpit_co.paa",
+			"3AS\3AS_Delta7\data\Delta7_Interfaces_ca.paa"
+		};
+		textureList[] = {"TAE_Purple_DarkRed", 1};
+		mti_aircraft_hasSkins = 1;
+		class TextureSources: TextureSources {
+			class TAE_Purple_DarkRed {
+				displayName = "Ashwing";
+				author = "3rd Army Studios and Edonn";
+				factions[] = {};
+				mti_aircraft_scope = 1;
+				textures[] = {
+					"\TAEVehicles\data\delta7\DEL7_Hull_Purple_DarkRed_co.paa",
+					"3AS\3AS_Delta7\data\Delta7_Landing_Gear_co.paa",
+					"3AS\3AS_Delta7\data\Delta7_Cockpit_co.paa",
+					"3AS\3AS_Delta7\data\Delta7_Interfaces_ca.paa"
+				};
+			};
+		};
+		author = "3rd Army Studios, MokTech Industries and Edonn";
+		side = 2;
+		faction = "TAE_Faction_HouseKarr";
+		editorSubcategory = "TAE_EdSubcat_HouseKarr_Aircraft";
+		crew = "TAE_Unit_Pilot";
+		typicalCargo[] = {"TAE_Unit_Pilot"};
+		tf_hasLRradio = 1;
+		tf_range = 100000;
+		maxSpeed = 2000;
+		altFullForce = 10000;
+		altNoForce = 20000;
+		// Test: disable automatic pitch alignment to the vertical flight path.
+		draconicTorqueYCoef = 0;
+		// 20% below the inherited 3AS hull armor of 60.
+		armor = 48;
+		// Two successive 15% increases: 32.25% above the inherited 3AS curve.
+		thrustCoef[] = {1.98375,1.98375,2.116,2.3805,2.645,3.30625,3.9675,4.62875,3.30625,2.645,2.24825,1.98375,1.45475,1.3225,1.3225,1.3225};
+		weapons[] = {"TAE_weapon_AA_Cannon", "Laserdesignator_pilotCamera", "ls_weapon_CMFlareLauncher"};
+		magazines[] = {
+			"mti_armoury_mag_AA_Cannon_Mag",
+			"mti_armoury_mag_AA_Cannon_Mag",
+			"mti_armoury_mag_AA_Cannon_Mag",
+			"Laserbatteries",
+			"ls_mag_240Rnd_CMFlareChaff_purple",
+			"ls_mag_240Rnd_CMFlareChaff_purple",
+			"ls_mag_240Rnd_CMFlareChaff_purple",
+			"ls_mag_240Rnd_CMFlareChaff_purple",
+			"ls_mag_240Rnd_CMFlareChaff_purple"
+		};
+		ace_cargo_space = 15;
+		ace_cargo_hasCargo = 1;
+		delete ACE_Cargo;
+		class Components: Components {
+			class SensorsManagerComponent: SensorsManagerComponent {
+				class Components: Components {
+					class ActiveRadarSensorComponent: SensorTemplateActiveRadar {
+						angleRangeHorizontal = 360;
+						angleRangeVertical = 360;
+						groundNoiseDistanceCoef = -1;
+						maxGroundNoiseDistance = -1;
+						minSpeedThreshold = 0;
+						maxSpeedThreshold = 0;
+						class AirTarget {
+							minRange = 100000;
+							maxRange = 100000;
+							objectDistanceLimitCoef = -1;
+							viewDistanceLimitCoef = -1;
+						};
+						class GroundTarget: AirTarget {};
+					};
+				};
+			};
+			class TransportPylonsComponent: TransportPylonsComponent {
+				class pylons: pylons {
+					class pylons1: pylons1 {
+						hardpoints[] = {"TAE_KOMRK_HP_AA"};
+						attachment = "TAE_Komrk_mag_Lightning";
+						maxWeight = 5000;
+						turret[] = {};
+					};
+					class pylons2: pylons2 {
+						hardpoints[] = {"TAE_KOMRK_HP_AA"};
+						attachment = "TAE_Komrk_mag_Lightning";
+						maxWeight = 5000;
+						turret[] = {};
+					};
+					class pylons3: pylons3 {
+						hardpoints[] = {"TAE_KOMRK_HP_AA"};
+						attachment = "TAE_Komrk_mag_Lightning";
+						maxWeight = 5000;
+						turret[] = {};
+					};
+					class pylons4: pylons4 {
+						hardpoints[] = {"TAE_KOMRK_HP_AA"};
+						attachment = "TAE_Komrk_mag_Lightning";
+						maxWeight = 5000;
+						turret[] = {};
+					};
+					delete pylons5;
+					delete pylons6;
+					delete Pylons7;
+				};
+				class presets: presets {
+					delete Default;
+					class TAE_Default {
+						displayName = "Talon Interceptors";
+						attachment[] = {"TAE_Komrk_mag_Lightning", "TAE_Komrk_mag_Lightning", "TAE_Komrk_mag_Lightning", "TAE_Komrk_mag_Lightning"};
+					};
+				};
+			};
+		};
+	};
 
 	class TAE_KomrkFighter_Transport_base: knd_KomrkFighter_VTOL_Dynamic_F {
 		scope = 0;
 		scopeCurator = 0;
 		vtol = 4;
+		flaps = 0;
+		flapsFrictionCoef = 0;
 		lockDetectionSystem = 30;
 		incomingMissileDetectionSystem = 26;
 		radarTargetSize = 0.6;
@@ -402,7 +984,7 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "House Karr Kom'rk-Class Fighter Transport";
-		author = "TAE Mod Team";
+		author = "House Kandosii and Hondo";
 
 		side = 2;
 		faction = "TAE_Faction_HouseKarr";
@@ -461,7 +1043,7 @@ class CfgVehicles {
 		class TextureSources {
 			class base {
 				displayName = "Base";
-				author = "TAE Mod Team";
+				author = "House Kandosii and Hondo";
 				textures[] = {
 					"TAEVehicles\data\komrk\base_fore_co.paa",
 					"knd_astromechs\tx\newrepublic\chassis\chassis_co.paa",
@@ -735,17 +1317,6 @@ class CfgVehicles {
 		};
 
 		class UserActions {
-			class RecoverAirbornePlayers {
-				displayName = "Recover Airborne Personnel";
-				position = "";
-				radius = 5;
-				onlyForPlayer = 1;
-				showWindow = 0;
-				hideOnUse = 1;
-				condition = "((player isEqualTo currentPilot this) AND (alive this) AND (isEngineOn this) AND !(isTouchingGround this) AND (((getPosATL this) select 2) >= 5) AND (((vectorMagnitude (velocity this)) * 3.6) <= 200) AND (time >= (this getVariable ['TAE_recoveryAvailableAt',0])))";
-				statement = "[this,player] remoteExecCall ['TAE_fnc_recoverAirbornePlayers',2]";
-			};
-
 			class OpenDoor {
 				displayName = "Open Drop Bay";
 				source = "user";
@@ -800,7 +1371,7 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "House Karr SKYCAT/I Transport";
-		author = "TAE Mod Team";
+		author = "House Kandosii";
 
 		side = 2;
 		faction = "TAE_Faction_HouseKarr";
@@ -923,6 +1494,8 @@ class CfgVehicles {
 		scope = 0;
 		scopeCurator = 0;
 		vtol = 4;
+		flaps = 0;
+		flapsFrictionCoef = 0;
 		lockDetectionSystem = 30;
 		incomingMissileDetectionSystem = 26;
 		radarTargetSize = 0.3;
@@ -939,7 +1512,7 @@ class CfgVehicles {
 		scope = 2;
 		scopeCurator = 2;
 		displayName = "House Karr Z-98 Interceptor";
-		author = "TAE Mod Team";
+		author = "Legion Studios and Hondo";
 
 		side = 2;
 		faction = "TAE_Faction_HouseKarr";
@@ -978,14 +1551,14 @@ class CfgVehicles {
 		};
 
 		hiddenSelectionsTextures[] = {
-			"TAEVehicles\data\z98\base_hull_co.paa",
+			"TAEVehicles\data\z98\pirate_blue_hull_co.paa",
 			"\ls\core\addons\vehicles_z98\data\cockpit_co.paa"
 		};
 
 		class TextureSources {
 			class base {
-				displayName = "Base";
-				author = "TAE Mod Team";
+				displayName = "Louis Vuitton Version";
+				author = "Legion Studios and Hondo";
 				factions[] = {};
 				textures[] = {
 					"TAEVehicles\data\z98\base_hull_co.paa",
@@ -993,6 +1566,15 @@ class CfgVehicles {
 				};
 			};
 			
+			class PirateBlue {
+				displayName = "Blue and Black (Pirate Rework)";
+				author = "House Kandosii and Hondo";
+				factions[] = {};
+				textures[] = {
+					"TAEVehicles\data\z98\pirate_blue_hull_co.paa",
+					"\ls\core\addons\vehicles_z98\data\cockpit_co.paa"
+				};
+			};
 			class Grey {
 				displayName = "Grey";
 				author = "Legion Studios";
@@ -1006,7 +1588,8 @@ class CfgVehicles {
 
 		textureList[] = {
 			"Grey", 0,
-			"base", 1
+			"base", 0,
+			"PirateBlue", 1
 		};
 
 		class Components {
@@ -1184,16 +1767,23 @@ class CfgVehicles {
 			class SensorsManagerComponent {
 				class Components {
 					class ActiveRadarSensorComponent: SensorTemplateActiveRadar {
+						// Compensate for small radar signatures and remove look-down clutter filtering.
+						angleRangeHorizontal = 360;
+						angleRangeVertical = 360;
+						groundNoiseDistanceCoef = -1;
+						maxGroundNoiseDistance = -1;
+						minSpeedThreshold = 0;
+						maxSpeedThreshold = 0;
 						class AirTarget {
-							minRange = 0;
-							maxRange = 32000;
+							minRange = 100000;
+							maxRange = 100000;
 							objectDistanceLimitCoef = -1;
 							viewDistanceLimitCoef = -1;
 						};
 
 						class GroundTarget {
-							minRange = 0;
-							maxRange = 8000;
+							minRange = 100000;
+							maxRange = 100000;
 							objectDistanceLimitCoef = -1;
 							viewDistanceLimitCoef = -1;
 						};
