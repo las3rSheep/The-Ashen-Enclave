@@ -1,12 +1,54 @@
 #define QUOTE(STR) #STR
 #define COMMA ,
+#define OPAREN (
+#define CPAREN )
 #define GLU(A,B) A##B
+#define QGLU(A,B) QUOTE(GLU(A,B))
+#define GLU3(A,B,C) GLU(A,GLU(B,C))
+#define QGLU3(A,B,C) QUOTE(GLU3(A,B,C))
 #define QGLU7(A,B,C,D,E,F,G) QUOTE(GLU(GLU(GLU(GLU(GLU(GLU(A,B),C),D),E),F),G))
 
-#define PUTON(NAME,CNAME,ARMOR,HELMET,NVG,FACEWEAR,UNIFORM) class TAE_PutOn##CNAME##Armor {\
+#define PUTON(NAME,CNAME,ARMOR,HELMET,NVG,FACEWEAR,UNIFORM)\
+class GLU3(TAE_PutOn,CNAME,Armor) {\
 	displayName = QUOTE(Put on NAME armor);\
 	condition = "true";\
 	statement = QGLU7([_player,COMMA'tae_,ARMOR,_armor'COMMA'tae_,HELMET,_helmet'COMMA'NVG'COMMA'FACEWEAR'COMMA'tae_uniform_,UNIFORM'] call TAE_fnc_applyWearableLoadout);\
+};
+
+#define CFLAGITEM(NAME,CNAME,TEX)\
+class GLU3(TAE_ClanFlag_,CNAME,_Item:) ls_carrierFlag_mandalorian_item {\
+	author = "TAE Mod Team";\
+	displayName = QGLU3(Flag OPAREN,NAME,CPAREN);\
+	ace_flags_texture = QGLU3(\TAEObjects\data\flags\flag_,TEX,_ca.paa);\
+	ace_flags_carrier = QGLU(TAE_ClanFlag_,CNAME);\
+};
+
+#define CLANFLAG(NAME,CNAME)\
+class GLU3(TAE_ClanFlag_,CNAME,:) ls_carrierFlag_mandalorian {\
+	scope = 1;\
+	scopeCurator = 0;\
+	author = "TAE Mod Team";\
+	displayName = QUOTE(NAME Flag);\
+};
+
+#define BEDCLASS(NAME,CNAME,TEX)\
+class GLU3(TAE_Bed_,CNAME,:) TAE_Bed_Base {\
+	scope = 2;\
+	scopeCurator = 2;\
+	displayName = QGLU3(House Karr ,NAME,Bed);\
+	hiddenSelectionsTextures[] = {\
+		QGLU3(\TAEObjects\data\furniture\tae_bed_,TEX,_co.paa)\
+	};\
+};
+
+#define VEXILLUM(NAME,CNAME,TEX)\
+class GLU3(TAE_Vexillum_,CNAME,:) TAE_Vexillum_Base {\
+	scope = 2;\
+	scopeCurator = 2;\
+	displayName = QGLU3(House Karr ,NAME, Vexillum);\
+	hiddenSelectionsTextures[] = {\
+		QGLU3(\TAEObjects\data\vexillums\tae_vexillum_,TEX,_co.paa)\
+	};\
 };
 
 class CfgPatches {
@@ -146,61 +188,14 @@ class Extended_Init_EventHandlers {
 class CfgWeapons {
 	class ls_carrierFlag_mandalorian_item;
 
-	class TAE_ClanFlag_Acklay_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
-		displayName = "Flag (Clan Acklay)";
-		ace_flags_texture = "\TAEObjects\data\flags\flag_acklay_ca.paa";
-		ace_flags_carrier = "TAE_ClanFlag_Acklay";
-	};
-
-	class TAE_ClanFlag_Foxx_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
-		displayName = "Flag (Clan Foxx)";
-		ace_flags_texture = "\TAEObjects\data\flags\flag_foxx_ca.paa";
-		ace_flags_carrier = "TAE_ClanFlag_Foxx";
-	};
-
-	class TAE_ClanFlag_Haranverd_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
-		displayName = "Flag (Clan Haranverd)";
-		ace_flags_texture = "\TAEObjects\data\flags\flag_haranverd_ca.paa";
-		ace_flags_carrier = "TAE_ClanFlag_Haranverd";
-	};
-
-	class TAE_ClanFlag_HouseKarr_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
-		displayName = "Flag (House Karr)";
-		ace_flags_texture = "\TAEObjects\data\flags\flag_house_karr_ca.paa";
-		ace_flags_carrier = "TAE_ClanFlag_HouseKarr";
-	};
-
-	class TAE_ClanFlag_Kyram_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
-		displayName = "Flag (Clan Kyr'am)";
-		ace_flags_texture = "\TAEObjects\data\flags\flag_kyram_ca.paa";
-		ace_flags_carrier = "TAE_ClanFlag_Kyram";
-	};
-
-	class TAE_ClanFlag_Rook_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
-		displayName = "Flag (Clan Rook)";
-		ace_flags_texture = "\TAEObjects\data\flags\flag_rook_ca.paa";
-		ace_flags_carrier = "TAE_ClanFlag_Rook";
-	};
-
-	class TAE_ClanFlag_Shyyyo_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
-		displayName = "Flag (Shyyyo)";
-		ace_flags_texture = "\TAEObjects\data\flags\flag_shyyyo_ca.paa";
-		ace_flags_carrier = "TAE_ClanFlag_Shyyyo";
-	};
-
-	class TAE_ClanFlag_Varen_Item: ls_carrierFlag_mandalorian_item {
-		author = "TAE Mod Team";
-		displayName = "Flag (Clan Varen)";
-		ace_flags_texture = "\TAEObjects\data\flags\flag_varen_ca.paa";
-		ace_flags_carrier = "TAE_ClanFlag_Varen";
-	};
+	CFLAGITEM(Clan Acklay,Acklay,acklay)
+	CFLAGITEM(Clan Foxx,Foxx,foxx)
+	CFLAGITEM(Clan Haranverd,Haranverd,haranverd)
+	CFLAGITEM(House Karr,HouseKarr,house_karr)
+	CFLAGITEM(Clan Kyr'am,Kyram,kyram)
+	CFLAGITEM(Clan Rook,Rook,rook)
+	CFLAGITEM(Shyyyo,Shyyyo,shyyyo)
+	CFLAGITEM(Clan Varen,Varen,varen)
 };
 
 class CfgVehicles {
@@ -215,61 +210,14 @@ class CfgVehicles {
 	class Land_3AS_Medical_Droid;
 	class ls_carrierFlag_mandalorian;
 
-	class TAE_ClanFlag_Acklay: ls_carrierFlag_mandalorian {
-		scope = 1;
-		scopeCurator = 0;
-		author = "TAE Mod Team";
-		displayName = "Clan Acklay Flag";
-	};
-
-	class TAE_ClanFlag_Foxx: ls_carrierFlag_mandalorian {
-		scope = 1;
-		scopeCurator = 0;
-		author = "TAE Mod Team";
-		displayName = "Clan Foxx Flag";
-	};
-
-	class TAE_ClanFlag_Haranverd: ls_carrierFlag_mandalorian {
-		scope = 1;
-		scopeCurator = 0;
-		author = "TAE Mod Team";
-		displayName = "Clan Haranverd Flag";
-	};
-
-	class TAE_ClanFlag_HouseKarr: ls_carrierFlag_mandalorian {
-		scope = 1;
-		scopeCurator = 0;
-		author = "TAE Mod Team";
-		displayName = "House Karr Flag";
-	};
-
-	class TAE_ClanFlag_Kyram: ls_carrierFlag_mandalorian {
-		scope = 1;
-		scopeCurator = 0;
-		author = "TAE Mod Team";
-		displayName = "Clan Kyr'am Flag";
-	};
-
-	class TAE_ClanFlag_Rook: ls_carrierFlag_mandalorian {
-		scope = 1;
-		scopeCurator = 0;
-		author = "TAE Mod Team";
-		displayName = "Clan Rook Flag";
-	};
-
-	class TAE_ClanFlag_Shyyyo: ls_carrierFlag_mandalorian {
-		scope = 1;
-		scopeCurator = 0;
-		author = "TAE Mod Team";
-		displayName = "Shyyyo Flag";
-	};
-
-	class TAE_ClanFlag_Varen: ls_carrierFlag_mandalorian {
-		scope = 1;
-		scopeCurator = 0;
-		author = "TAE Mod Team";
-		displayName = "Clan Varen Flag";
-	};
+	CLANFLAG(Clan Acklay,Acklay)
+	CLANFLAG(Clan Foxx,Foxx)
+	CLANFLAG(Clan Haranverd,Haranverd)
+	CLANFLAG(House Karr,HouseKarr)
+	CLANFLAG(Clan Kyr'am,Kyram)
+	CLANFLAG(Clan Rook,Rook)
+	CLANFLAG(Shyyyo,Shyyyo)
+	CLANFLAG(Clan Varen,Varen)
 
 	class TAE_Specialization_Gonk_Droid: 3as_GNK {
 		scope = 2;
@@ -344,59 +292,14 @@ class CfgVehicles {
 		hiddenSelections[] = {"camo1"};
 	};
 
-	class TAE_Bed_Acklay: TAE_Bed_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Acklay Bed";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\furniture\tae_bed_acklay_co.paa"
-		};
-	};
-
-	class TAE_Bed_Foxx: TAE_Bed_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Foxx Bed";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\furniture\tae_bed_foxx_co.paa"
-		};
-	};
-
-	class TAE_Bed_Varen: TAE_Bed_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Varen Bed";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\furniture\tae_bed_varen_co.paa"
-		};
-	};
-
-	class TAE_Bed_Rook: TAE_Bed_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Rook Bed";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\furniture\tae_bed_rook_co.paa"
-		};
-	};
-
-	class TAE_Bed_HouseKarr: TAE_Bed_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Bed";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\furniture\tae_bed_karr_co.paa"
-		};
-	};
-
-	class TAE_Bed_Shyyyo: TAE_Bed_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Shyyyo Bed";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\furniture\tae_bed_shyyyo_co.paa"
-		};
-	};
+	BEDCLASS(Acklay ,Acklay,acklay)
+	BEDCLASS(Foxx ,Foxx,foxx)
+	BEDCLASS(Varen ,Varen,varen)
+	BEDCLASS(Rook ,Rook,rook)
+	BEDCLASS(,HouseKarr,karr)
+	BEDCLASS(Shyyyo ,Shyyyo,shyyyo)
+	BEDCLASS(Kyr'am ,Kyram,kyram)
+	BEDCLASS(Haranverd ,Haranverd,haranverd)
 
 	class TAE_Wearable_Helmet_Base: ThingX {
 		scope = 0;
@@ -523,24 +426,6 @@ class CfgVehicles {
 				PUTON(Haranverd Traditional,HaranverdTraditional,haranverd_traditional,haranverd_traditional,tgf_nvg_rangefinder_r,,grey_seal)
 				PUTON(Haranverd Nite Owl,HaranverdNiteOwl,haranverd_niteowl,haranverd_niteowl,tgf_nvg_nite_owl_rangefinder,,grey_female)
 			};
-		};
-	};
-
-	class TAE_Bed_Kyram: TAE_Bed_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Kyr'am Bed";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\furniture\tae_bed_kyram_co.paa"
-		};
-	};
-
-	class TAE_Bed_Haranverd: TAE_Bed_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Haranverd Bed";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\furniture\tae_bed_haranverd_co.paa"
 		};
 	};
 
@@ -819,77 +704,14 @@ class CfgVehicles {
 		};
 	};
 
-	class TAE_Vexillum_Acklay: TAE_Vexillum_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Acklay Vexillum";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\vexillums\tae_vexillum_acklay_co.paa"
-		};
-	};
-
-	class TAE_Vexillum_Foxx: TAE_Vexillum_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Foxx Vexillum";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\vexillums\tae_vexillum_foxx_co.paa"
-		};
-	};
-
-	class TAE_Vexillum_Varen: TAE_Vexillum_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Varen Vexillum";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\vexillums\tae_vexillum_varen_co.paa"
-		};
-	};
-
-	class TAE_Vexillum_Rook: TAE_Vexillum_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Rook Vexillum";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\vexillums\tae_vexillum_rook_co.paa"
-		};
-	};
-
-	class TAE_Vexillum_HouseKarr: TAE_Vexillum_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Command Vexillum";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\vexillums\tae_vexillum_house_karr_co.paa"
-		};
-	};
-
-	class TAE_Vexillum_Shyyyo: TAE_Vexillum_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Shyyyo Vexillum";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\vexillums\tae_vexillum_shyyyo_co.paa"
-		};
-	};
-
-	class TAE_Vexillum_Kyram: TAE_Vexillum_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Kyr'am Vexillum";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\vexillums\tae_vexillum_kyram_co.paa"
-		};
-	};
-
-	class TAE_Vexillum_Haranverd: TAE_Vexillum_Base {
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "House Karr Haranverd Vexillum";
-		hiddenSelectionsTextures[] = {
-			"\TAEObjects\data\vexillums\tae_vexillum_haranverd_co.paa"
-		};
-	};
+	VEXILLUM(Acklay,Acklay,acklay)
+	VEXILLUM(Foxx,Foxx,foxx)
+	VEXILLUM(Varen,Varen,varen)
+	VEXILLUM(Rook,Rook,rook)
+	VEXILLUM(Command,HouseKarr,house_karr)
+	VEXILLUM(Shyyyo,Shyyyo,shyyyo)
+	VEXILLUM(Kyr'am,Kyram,kyram)
+	VEXILLUM(Haranverd,Haranverd,haranverd)
 
 	class TAE_Restricted_Arsenal_Box: JLTS_Ammobox_weapons_GAR {
 		scope = 2;
