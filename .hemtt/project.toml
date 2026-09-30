@@ -1,0 +1,15 @@
+name = "The Ashen Enclave"
+prefix = "TAECore"
+author = "TAE Aux Mod Team"
+
+[version]
+major = 1
+minor = 2
+patch = 1
+build = 2
+
+[files]
+include = [
+    "Mod Stuff/*"
+]
+exclude = []
