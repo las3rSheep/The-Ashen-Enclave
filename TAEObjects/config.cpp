@@ -1,3 +1,13 @@
+#define QUOTE(STR) #STR
+#define COMMA ,
+#define GLU(A,B) A##B
+
+#define PUTON(NAME,CNAME,ARMOR,HELMET,NVG,FACEWEAR,UNIFORM) class TAE_PutOn##CNAME##Armor {\
+	displayName = QUOTE(Put on NAME armor);\
+	condition = "true";\
+	statement = QUOTE(GLU(GLU(GLU(GLU(GLU(GLU([_player,COMMA'tae_),ARMOR),_armor'COMMA'tae_),HELMET),_helmet'COMMA'NVG'COMMA'FACEWEAR'COMMA'tae_uniform_),UNIFORM'] call TAE_fnc_applyWearableLoadout));\
+};
+
 class CfgPatches {
 	class TAEObjects {
 		name = "TAE Objects";
@@ -424,47 +434,13 @@ class CfgVehicles {
 				displayName = "Helmet";
 				condition = "true";
 
-				class TAE_PutOnAcklayArmor {
-					displayName = "Put On Acklay's Armor";
-					condition = "true";
-					statement = "[_player,'tae_acklay_armor','tae_acklay_helmet','tae_ls_grey_rangefinder','','tae_uniform_ls_mandalorian'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnStasikArmor {
-					displayName = "Put On Stasik's Armor";
-					condition = "true";
-					statement = "[_player,'tae_stasik_armor','tae_stasik_helmet','tgf_nvg_rangefinder_r','','tae_uniform_black_seal'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnJimothyArmor {
-					displayName = "Put On Jimothy's Armor";
-					condition = "true";
-					statement = "[_player,'tae_jimothy_armor','tae_jimothy_helmet','tae_jimothy_rangefinder','','tae_uniform_vau'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnFrenkArmor {
-					displayName = "Put On Frenk's Armor";
-					condition = "true";
-					statement = "[_player,'tae_frenk_armor','tae_frenk_helmet','tae_dark_grey_rangefinder','','tae_uniform_dark_green_seal'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnTowiArmor {
-					displayName = "Put On Towi's Armor";
-					condition = "true";
-					statement = "[_player,'tae_acklay_niteowl_armor','tae_towi_helmet','tae_ls_grey_rangefinder','tae_facewear_ls_neck_lining','tae_uniform_black_female'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnBingoArmor {
-					displayName = "Put On Bingo's Armor";
-					condition = "true";
-					statement = "[_player,'tae_acklay_armor','tae_bingo_helmet','tgf_nvg_rangefinder_r','tae_facewear_ls_neck_lining','tae_uniform_ls_mandalorian'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnNiteOwlArmor {
-					displayName = "Put On Nite Owl's Armor";
-					condition = "true";
-					statement = "[_player,'tae_acklay_niteowl_armor','tae_acklay_niteowl_helmet','tgf_nvg_nite_owl_rangefinder','','tae_uniform_black_female'] call TAE_fnc_applyWearableLoadout";
-				};
+				PUTON(Clan Acklay,Acklay,acklay,acklay,tae_ls_grey_rangefinder,,ls_mandalorian)
+				PUTON(Acklay Nite Owl,AcklayNiteOwl,acklay_niteowl,acklay_niteowl,tgf_nvg_nite_owl_rangefinder,,black_female)
+				PUTON(Stasik's,Stasik,stasik,stasik,tgf_nvg_rangefinder_r,,black_seal)
+				PUTON(Jimothy's,Jimothy,jimothy,jimothy,tae_jimothy_rangefinder,,vau)
+				PUTON(Frenk's,Frenk,frenk,frenk,tae_dark_grey_rangefinder,,dark_green_seal)
+				PUTON(Towi's,Towi,acklay_niteowl,towi,tae_ls_grey_rangefinder,tae_facewear_ls_neck_lining,black_female)
+				PUTON(Bingo's,Bingo,acklay,bingo,tgf_nvg_rangefinder_r,tae_facewear_ls_neck_lining,ls_mandalorian)
 			};
 		};
 	};
@@ -488,35 +464,11 @@ class CfgVehicles {
 				displayName = "Helmet";
 				condition = "true";
 
-				class TAE_PutOnFoxxArmor {
-					displayName = "Put On Foxx's Armor";
-					condition = "true";
-					statement = "[_player,'tae_foxx_armor','tae_foxx_helmet','tae_foxx_rangefinder','','tae_uniform_grey_seal'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnJunoArmor {
-					displayName = "Put On Juno's Armor";
-					condition = "true";
-					statement = "[_player,'tae_juno_armor','tae_juno_helmet','tae_foxx_rangefinder','','tae_uniform_grey_seal'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnBeanArmor {
-					displayName = "Put On Bean's Armor";
-					condition = "true";
-					statement = "[_player,'tae_foxx_armor','tae_bean_helmet','tae_foxx_rangefinder','','tae_uniform_grey_seal'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnGreyArmor {
-					displayName = "Put On Grey's Armor";
-					condition = "true";
-					statement = "[_player,'tae_foxx_armor','tae_grey_helmet','tae_foxx_rangefinder','','tae_uniform_grey_seal'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnGalaxyArmor {
-					displayName = "Put On Galaxy's Armor";
-					condition = "true";
-					statement = "[_player,'tae_galaxy_armor','tae_galaxy_helmet','tae_foxx_rangefinder','','tae_uniform_grey_seal'] call TAE_fnc_applyWearableLoadout";
-				};
+				PUTON(Clan Foxx,Foxx,foxx,foxx,tae_foxx_rangefinder,,grey_seal)
+				PUTON(Juno's,Juno,juno,juno,tae_foxx_rangefinder,,grey_seal)
+				PUTON(Bean's,Bean,foxx,bean,tae_foxx_rangefinder,,grey_seal)
+				PUTON(Grey's,Grey,foxx,grey,tae_foxx_rangefinder,,grey_seal)
+				PUTON(Galaxy's,Galaxy,galaxy,galaxy,tae_foxx_rangefinder,,grey_seal)
 			};
 		};
 	};
@@ -540,29 +492,10 @@ class CfgVehicles {
 				displayName = "Helmet";
 				condition = "true";
 
-				class TAE_PutOnVarenArmor {
-					displayName = "Put On Varen's Armor";
-					condition = "true";
-					statement = "[_player,'tae_varen_recon_armor','tae_varen_helmet','tae_dark_red_rangefinder','','tae_uniform_dark_red_seal'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnVarenNiteOwlArmor {
-					displayName = "Put On Varen's Nite Owl Armor";
-					condition = "true";
-					statement = "[_player,'tae_varen_niteowl_armor','tae_varen_helmet','tae_dark_red_rangefinder','','tae_uniform_dark_red_female'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnValeriaArmor {
-					displayName = "Put On Valeria's Armor";
-					condition = "true";
-					statement = "[_player,'tae_varen_niteowl_armor','tae_valeria_helmet','tae_dark_red_rangefinder','','tae_uniform_dark_red_female'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnKeiraArmor {
-					displayName = "Put On Keira's Armor";
-					condition = "true";
-					statement = "[_player,'tae_varen_niteowl_armor','tae_keira_helmet','tae_dark_red_rangefinder','ls_glasses_scarf','tae_uniform_dark_red_female'] call TAE_fnc_applyWearableLoadout";
-				};
+				PUTON(Varen Recon,Varen,varen_recon,varen,tae_dark_red_rangefinder,,dark_red_seal)
+				PUTON(Varen Nite Owl,VarenNiteOwl,varen_niteowl,varen,tae_dark_red_rangefinder,,dark_red_female)
+				PUTON(Valeria's,Valeria,varen_niteowl,valeria,tae_dark_red_rangefinder,,dark_red_female)
+				PUTON(keira's,Keira,varen_niteowl,keira,tae_dark_grey_rangefinder,ls_glasses_scarf,dark_red_female)
 			};
 		};
 	};
@@ -586,17 +519,8 @@ class CfgVehicles {
 				displayName = "Helmet";
 				condition = "true";
 
-				class TAE_PutOnHaranverdTraditionalArmor {
-					displayName = "Put On Clan Haranverd Traditional Armor";
-					condition = "true";
-					statement = "[_player,'tae_haranverd_traditional_armor','tae_haranverd_traditional_helmet','tgf_nvg_rangefinder_r','','tae_uniform_grey_seal'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnHaranverdNiteOwlArmor {
-					displayName = "Put On Clan Haranverd Nite Owl Armor";
-					condition = "true";
-					statement = "[_player,'tae_haranverd_niteowl_armor','tae_haranverd_niteowl_helmet','tgf_nvg_nite_owl_rangefinder','','tae_uniform_grey_female'] call TAE_fnc_applyWearableLoadout";
-				};
+				PUTON(Haranverd Traditional,HaranverdTraditional,haranverd_traditional,haranverd_traditional,tgf_nvg_rangefinder_r,,grey_seal)
+				PUTON(Haranverd Nite Owl,HaranverdNiteOwl,haraverd_niteowl,haraverd_niteowl,tgf_nvg_nite_owl_rangefinder,,grey_female)
 			};
 		};
 	};
@@ -638,11 +562,7 @@ class CfgVehicles {
 				displayName = "Helmet";
 				condition = "true";
 
-                class TAE_PutOnKyramArmor {
-                    displayName = "Put On Clan Kyr'am Armor";
-                    condition = "true";
-                    statement = "[_player,'tae_kyram_armor','tae_kyram_helmet','tgf_nvg_rangefinder_r','','tae_uniform_grey_seal'] call TAE_fnc_applyWearableLoadout";
-                };
+				PUTON(Clan Kyr'am,Kyram,kyram,kyram,tgf_nvg_rangefinder_r,,grey_seal)
                 class TAE_PutOnNovaArmor {
                     displayName = "Put On Nova's Armor";
                     condition = "true";
@@ -671,41 +591,12 @@ class CfgVehicles {
 				displayName = "Helmet";
 				condition = "true";
 
-				class TAE_PutOnRookArmor {
-					displayName = "Put On Rook's Armor";
-					condition = "true";
-					statement = "[_player,'tae_rook_armor','tae_rook_helmet','tgf_nvg_rangefinder_r','','tae_uniform_grey_seal'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnHadesArmor {
-					displayName = "Put On Hades' Armor";
-					condition = "true";
-					statement = "[_player,'tae_hades_armor','tae_hades_helmet','tgf_nvg_rangefinder_r','','tae_uniform_grey_seal'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnVarioArmor {
-					displayName = "Put On Vario's Armor";
-					condition = "true";
-					statement = "[_player,'tae_rook_armor','tae_vario_helmet','tgf_nvg_rangefinder_r','','tae_uniform_grey_seal'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnAndoraArmor {
-					displayName = "Put On Andora's Armor";
-					condition = "true";
-					statement = "[_player,'tae_andora_armor','tae_andora_helmet','tgf_nvg_nite_owl_rangefinder','','tae_uniform_black_female'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnGoostivoolArmor {
-					displayName = "Put On Goostivool's Armor";
-					condition = "true";
-					statement = "[_player,'tae_goostivool_armor','tae_goostivool_helmet','tgf_nvg_rangefinder_r','','tae_uniform_ls_mandalorian'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnShenArmor {
-					displayName = "Put On Shen's Armor";
-					condition = "true";
-					statement = "[_player,'tae_shen_armor','tae_shen_helmet','tgf_nvg_rangefinder_r','','tae_uniform_grey_seal'] call TAE_fnc_applyWearableLoadout";
-				};
+				PUTON(Clan Rook,Rook,rook,rook,tgf_nvg_rangefinder_r,,grey_seal)
+				PUTON(Hades',Hades,hades,hades,tgf_nvg_rangefinder_r,,grey_seal)
+				PUTON(Vario's,Vario,rook,vario,tgf_nvg_rangefinder_r,,grey_seal)
+				PUTON(Andora's,Andora,andora,andora,tgf_nvg_nite_owl_rangefinder,,black_female)
+				PUTON(Goostivool's,Goostivool,goostivool,goostivool,tgf_nvg_rangefinder_r,,grey_seal)
+				PUTON(Shen's,Shen,shen,shen,tgf_nvg_rangefinder_r,,grey_seal)
 			};
 		};
 	};
@@ -800,11 +691,7 @@ class CfgVehicles {
 				displayName = "Helmet";
 				condition = "true";
 
-				class TAE_PutOnNoxArmor {
-					displayName = "Put On Nox's Armor";
-					condition = "true";
-					statement = "[_player,'tae_nox_armor','tae_nox_helmet','','','tae_uniform_grey_seal'] call TAE_fnc_applyWearableLoadout";
-				};
+				PUTON(Nox's,Nox,nox,nox,,,grey_seal)
 			};
 		};
 	};
@@ -828,11 +715,7 @@ class CfgVehicles {
 				displayName = "Helmet";
 				condition = "true";
 
-				class TAE_PutOnHondoArmor {
-					displayName = "Put On Hondo's Armor";
-					condition = "true";
-					statement = "[_player,'tae_hondo_armor','tae_hondo_helmet','','','tae_uniform_forgemaster_seal'] call TAE_fnc_applyWearableLoadout";
-				};
+				PUTON(Hondo's,Hondo,hondo,hondo,,,forgemaster_seal)
 			};
 		};
 	};
@@ -861,11 +744,7 @@ class CfgVehicles {
 				displayName = "Helmet";
 				condition = "true";
 
-				class TAE_PutOnEdonnArmor {
-					displayName = "Put On Edonn's Armor";
-					condition = "true";
-					statement = "[_player,'tae_edonn_armor','tae_edonn_helmet','tgf_nvg_circuit','','tae_uniform_ls_mandalorian'] call TAE_fnc_applyWearableLoadout";
-				};
+				PUTON(Edonn's,Edonn,edonn,edonn,tgf_nvg_circuit,,ls_mandalorian)
 			};
 		};
 	};
@@ -890,17 +769,8 @@ class CfgVehicles {
 				displayName = "Helmet";
 				condition = "true";
 
-				class TAE_PutOnTekaArmor {
-					displayName = "Put On Teka's Armor";
-					condition = "true";
-					statement = "[_player,'tae_teka_armor','tae_teka_helmet','','','tae_uniform_black_seal'] call TAE_fnc_applyWearableLoadout";
-				};
-
-				class TAE_PutOnShyyyoArmor {
-					displayName = "Put On Shyyyo's Armor";
-					condition = "true";
-					statement = "[_player,'tae_shyyyo_recon_armor','tae_shyyyo_helmet','','','tae_uniform_grey_seal'] call TAE_fnc_applyWearableLoadout";
-				};
+				PUTON(Teka's,Teka,teka,teka,,,black_seal)
+				PUTON(Shyyyo Flight's,Shyyyo,shyyyo_recon,shyyyo,,,grey_seal)
 			};
 		};
 	};
