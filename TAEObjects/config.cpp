@@ -15,6 +15,16 @@ class GLU3(TAE_PutOn,CNAME,Armor) {\
 	statement = QGLU7([_player,COMMA'tae_,ARMOR,_armor'COMMA'tae_,HELMET,_helmet'COMMA'NVG'COMMA'FACEWEAR'COMMA'tae_uniform_,UNIFORM'] call TAE_fnc_applyWearableLoadout);\
 };
 
+#define COUNTSTUFF(TYPE,ITEM,COUNT)\
+class GLU(_xx_,ITEM) {\
+	TYPE = QUOTE(ITEM);\
+	count = COUNT;\
+};
+
+#define MAGS(ITEM,COUNT) COUNTSTUFF(magazine,ITEM,COUNT)
+#define ITEMS(ITEM,COUNT) COUNTSTUFF(name,ITEM,COUNT)
+#define BPACKS(ITEM,COUNT) COUNTSTUFF(backpack,ITEM,COUNT)
+
 #define CFLAGITEM(NAME,CNAME,TEX)\
 class GLU3(TAE_ClanFlag_,CNAME,_Item:) ls_carrierFlag_mandalorian_item {\
 	author = "TAE Mod Team";\
@@ -771,18 +781,9 @@ class CfgVehicles {
 		class TransportMagazines {};
 
 		class TransportItems {
-			class _xx_knd_crates_ammoTin_verySmall {
-				name = "knd_crates_ammoTin_verySmall";
-				count = 50;
-			};
-			class _xx_knd_crates_ammoTin_small {
-				name = "knd_crates_ammoTin_small";
-				count = 50;
-			};
-			class _xx_knd_crates_ammoTin_large {
-				name = "knd_crates_ammoTin_large";
-				count = 50;
-			};
+			ITEMS(knd_crates_ammoTin_verySmall,50)
+			ITEMS(knd_crates_ammoTin_small,50)
+			ITEMS(knd_crates_ammoTin_large,50)
 		};
 		class TransportBackpacks {};
 	};
@@ -821,140 +822,44 @@ class CfgVehicles {
 		class TransportWeapons {};
 
 		class TransportMagazines {
-			class _xx_3AS_ThermalDetonator {
-				magazine = "3AS_ThermalDetonator";
-				count = 20;
-			};
-			class _xx_3AS_SonicDet {
-				magazine = "3AS_SonicDet";
-				count = 12;
-			};
-			class _xx_3AS_SmokeBlue {
-				magazine = "3AS_SmokeBlue";
-				count = 10;
-			};
-			class _xx_3AS_SmokeGreen {
-				magazine = "3AS_SmokeGreen";
-				count = 10;
-			};
-			class _xx_3AS_SmokeRed {
-				magazine = "3AS_SmokeRed";
-				count = 10;
-			};
-			class _xx_3AS_SmokeWhite {
-				magazine = "3AS_SmokeWhite";
-				count = 10;
-			};
-			class _xx_3AS_SmokeYellow {
-				magazine = "3AS_SmokeYellow";
-				count = 10;
-			};
-			class _xx_3AS_ThrowableCharge {
-				magazine = "3AS_ThrowableCharge";
-				count = 8;
-			};
-			class _xx_3AS_DetPack {
-				magazine = "3AS_DetPack";
-				count = 8;
-			};
-			class _xx_EC01_RemoteMagazine {
-				magazine = "EC01_RemoteMagazine";
-				count = 8;
-			};
-			class _xx_RTX_RemoteMagazine {
-				magazine = "RTX_RemoteMagazine";
-				count = 8;
-			};
-			class _xx_mti_armoury_mag_breaching_charge {
-				magazine = "mti_armoury_mag_breaching_charge";
-				count = 8;
-			};
-			class _xx_mti_armoury_mag_detpack {
-				magazine = "mti_armoury_mag_detpack";
-				count = 8;
-			};
-			class _xx_mti_armoury_mag_satchelCharge {
-				magazine = "mti_armoury_mag_satchelCharge";
-				count = 6;
-			};
-			class _xx_HX_AT_Mine_Mag {
-				magazine = "HX_AT_Mine_Mag";
-				count = 6;
-			};
-			class _xx_1Rnd_HE_Grenade_shell {
-				magazine = "1Rnd_HE_Grenade_shell";
-				count = 20;
-			};
-			class _xx_3Rnd_HE_Grenade_shell {
-				magazine = "3Rnd_HE_Grenade_shell";
-				count = 10;
-			};
-			class _xx_1Rnd_Smoke_Grenade_shell {
-				magazine = "1Rnd_Smoke_Grenade_shell";
-				count = 10;
-			};
-			class _xx_1Rnd_SmokeRed_Grenade_shell {
-				magazine = "1Rnd_SmokeRed_Grenade_shell";
-				count = 10;
-			};
-			class _xx_1Rnd_SmokeGreen_Grenade_shell {
-				magazine = "1Rnd_SmokeGreen_Grenade_shell";
-				count = 10;
-			};
-			class _xx_1Rnd_SmokeBlue_Grenade_shell {
-				magazine = "1Rnd_SmokeBlue_Grenade_shell";
-				count = 10;
-			};
-			class _xx_UGL_FlareWhite_F {
-				magazine = "UGL_FlareWhite_F";
-				count = 10;
-			};
-			class _xx_UGL_FlareRed_F {
-				magazine = "UGL_FlareRed_F";
-				count = 10;
-			};
-			class _xx_UGL_FlareGreen_F {
-				magazine = "UGL_FlareGreen_F";
-				count = 10;
-			};
-			class _xx_UGL_FlareYellow_F {
-				magazine = "UGL_FlareYellow_F";
-				count = 10;
-			};
+			MAGS(3AS_ThermalDetonator,20)
+			MAGS(3AS_SonicDet,12)
+			MAGS(3AS_SmokeBlue,10)
+			MAGS(3AS_SmokeGreen,10)
+			MAGS(3AS_SmokeRed,10)
+			MAGS(3AS_SmokeWhite,10)
+			MAGS(3AS_SmokeYellow,10)
+			MAGS(3AS_ThrowableCharge,8)
+			MAGS(3AS_DetPack,8)
+			MAGS(EC01_RemoteMagazine,8)
+			MAGS(RTX_RemoteMagazine,8)
+			MAGS(mti_armoury_mag_breaching_charge,8)
+			MAGS(mti_armoury_mag_detpack,8)
+			MAGS(mti_armoury_mag_satchelCharge,6)
+			MAGS(HX_AT_Mine_Mag,6)
+			MAGS(1Rnd_HE_Grenade_shell,20)
+			MAGS(3Rnd_HE_Grenade_shell,10)
+			MAGS(1Rnd_Smoke_Grenade_shell,10)
+			MAGS(1Rnd_SmokeRed_Grenade_shell,10)
+			MAGS(1Rnd_SmokeGreen_Grenade_shell,10)
+			MAGS(1Rnd_SmokeBlue_Grenade_shell,10)
+			MAGS(UGL_FlareWhite_F,10)
+			MAGS(UGL_FlareRed_F,10)
+			MAGS(UGL_FlareGreen_F,10)
+			MAGS(UGL_FlareYellow_F,10)
 		};
 
 		class TransportItems {
-			class _xx_ACE_Clacker {
-				name = "ACE_Clacker";
-				count = 6;
-			};
-			class _xx_ACE_M26_Clacker {
-				name = "ACE_M26_Clacker";
-				count = 6;
-			};
-			class _xx_ACE_DefusalKit {
-				name = "ACE_DefusalKit";
-				count = 4;
-			};
-			class _xx_ACE_wirecutter {
-				name = "ACE_wirecutter";
-				count = 4;
-			};
+			ITEMS(ACE_Clacker,6)
+			ITEMS(ACE_M26_Clacker,6)
+			ITEMS(ACE_DefusalKit,4)
+			ITEMS(ACE_wirecutter,4)
 		};
 
 		class TransportBackpacks {
-			class _xx_knd_z6rocket {
-				backpack = "knd_z6rocket";
-				count = 6;
-			};
-			class _xx_knd_z6rocket_AA {
-				backpack = "knd_z6rocket_AA";
-				count = 6;
-			};
-			class _xx_knd_z6rocket_AT {
-				backpack = "knd_z6rocket_AT";
-				count = 6;
-			};
+			BPACKS(knd_z6rocket,6)
+			BPACKS(knd_z6rocket_AA,6)
+			BPACKS(knd_z6rocket_AT,6)
 		};
 	};
 
@@ -993,54 +898,18 @@ class CfgVehicles {
 		class TransportMagazines {};
 
 		class TransportItems {
-			class _xx_ACE_tourniquet {
-				name = "ACE_tourniquet";
-				count = 40;
-			};
-			class _xx_ACE_splint {
-				name = "ACE_splint";
-				count = 30;
-			};
-			class _xx_ACE_morphine {
-				name = "ACE_morphine";
-				count = 30;
-			};
-			class _xx_ACE_epinephrine {
-				name = "ACE_epinephrine";
-				count = 30;
-			};
-			class _xx_ACE_adenosine {
-				name = "ACE_adenosine";
-				count = 20;
-			};
-			class _xx_ACE_painkillers {
-				name = "ACE_painkillers";
-				count = 30;
-			};
-			class _xx_mti_armoury_props_medical_Bacta_Item_1000 {
-				name = "mti_armoury_props_medical_Bacta_Item_1000";
-				count = 20;
-			};
-			class _xx_mti_armoury_props_medical_Bacta_Item_500 {
-				name = "mti_armoury_props_medical_Bacta_Item_500";
-				count = 30;
-			};
-			class _xx_mti_armoury_props_medical_Bacta_Item_250 {
-				name = "mti_armoury_props_medical_Bacta_Item_250";
-				count = 30;
-			};
-			class _xx_ACE_surgicalKit {
-				name = "ACE_surgicalKit";
-				count = 4;
-			};
-			class _xx_MTI_BactaSpray {
-				name = "MTI_BactaSpray";
-				count = 200;
-			};
-			class _xx_MTI_BactaPatch {
-				name = "MTI_BactaPatch";
-				count = 200;
-			};
+			ITEMS(ACE_tourniquet,40)
+			ITEMS(ACE_splint,30)
+			ITEMS(ACE_morphine,30)
+			ITEMS(ACE_epinephrine,30)
+			ITEMS(ACE_adenosine,20)
+			ITEMS(ACE_painkillers,30)
+			ITEMS(mti_armoury_props_medical_Bacta_Item_1000,20)
+			ITEMS(mti_armoury_props_medical_Bacta_Item_500,30)
+			ITEMS(mti_armoury_props_medical_Bacta_Item_250,30)
+			ITEMS(ACE_surgicalKit,4)
+			ITEMS(MTI_BactaSpray,200)
+			ITEMS(MTI_BactaPatch,200)
 		};
 
 		class TransportBackpacks {};
