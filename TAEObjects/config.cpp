@@ -1,11 +1,12 @@
 #define QUOTE(STR) #STR
 #define COMMA ,
 #define GLU(A,B) A##B
+#define QGLU7(A,B,C,D,E,F,G) QUOTE(GLU(GLU(GLU(GLU(GLU(GLU(A,B),C),D),E),F),G))
 
 #define PUTON(NAME,CNAME,ARMOR,HELMET,NVG,FACEWEAR,UNIFORM) class TAE_PutOn##CNAME##Armor {\
 	displayName = QUOTE(Put on NAME armor);\
 	condition = "true";\
-	statement = QUOTE(GLU(GLU(GLU(GLU(GLU(GLU([_player,COMMA'tae_),ARMOR),_armor'COMMA'tae_),HELMET),_helmet'COMMA'NVG'COMMA'FACEWEAR'COMMA'tae_uniform_),UNIFORM'] call TAE_fnc_applyWearableLoadout));\
+	statement = QGLU7([_player,COMMA'tae_,ARMOR,_armor'COMMA'tae_,HELMET,_helmet'COMMA'NVG'COMMA'FACEWEAR'COMMA'tae_uniform_,UNIFORM'] call TAE_fnc_applyWearableLoadout);\
 };
 
 class CfgPatches {
