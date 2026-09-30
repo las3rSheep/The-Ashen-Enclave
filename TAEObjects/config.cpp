@@ -51,6 +51,11 @@ class GLU3(TAE_Vexillum_,CNAME,:) TAE_Vexillum_Base {\
 	};\
 };
 
+#define FLAGBEDVEX(FLAG,BED,VEX,CNAME,TEX)\
+CLANFLAG(FLAG,CNAME)\
+BEDCLASS(BED,CNAME,TEX)\
+VEXILLUM(VEX,CNAME,TEX)
+
 class CfgPatches {
 	class TAEObjects {
 		name = "TAE Objects";
@@ -210,14 +215,36 @@ class CfgVehicles {
 	class Land_3AS_Medical_Droid;
 	class ls_carrierFlag_mandalorian;
 
-	CLANFLAG(Clan Acklay,Acklay)
-	CLANFLAG(Clan Foxx,Foxx)
-	CLANFLAG(Clan Haranverd,Haranverd)
-	CLANFLAG(House Karr,HouseKarr)
-	CLANFLAG(Clan Kyr'am,Kyram)
-	CLANFLAG(Clan Rook,Rook)
-	CLANFLAG(Shyyyo,Shyyyo)
-	CLANFLAG(Clan Varen,Varen)
+	class TAE_Bed_Base: SFA_Bed_Single {
+		scope = 0;
+		scopeCurator = 0;
+		author = "TAE Mod Team";
+		editorCategory = "TAE_EdCat_HouseKarr";
+		editorSubcategory = "TAE_EdSubcat_HouseKarr_Furniture";
+		hiddenSelections[] = {"camo1"};
+	};
+
+	class TAE_Vexillum_Base: 3AS_Small_Mando_Stand {
+		scope = 0;
+		scopeCurator = 0;
+		author = "TAE Mod Team";
+		editorCategory = "TAE_EdCat_HouseKarr";
+		editorSubcategory = "TAE_EdSubcat_HouseKarr_Vexillums";
+		model = "3AS\3AS_Props\Flags\models\Small_Stand\3as_Small_Stand.p3d";
+		hiddenSelections[] = {"camo1"};
+		hiddenSelectionsMaterials[] = {
+			"\TAEObjects\data\vexillums\tae_vexillum.rvmat"
+		};
+	};
+
+	FLAGBEDVEX(House Karr,,Command,HouseKarr,house_karr)
+	FLAGBEDVEX(Clan Acklay,Acklay ,Acklay,Acklay,acklay)
+	FLAGBEDVEX(Clan Foxx,Foxx ,Foxx,Foxx,foxx)
+	FLAGBEDVEX(Clan Rook,Rook ,Rook,Rook,rook)
+	FLAGBEDVEX(Shyyyo,Shyyyo ,Shyyyo,Shyyyo,shyyyo)
+	FLAGBEDVEX(Clan Varen,Varen ,Varen,Varen,varen)
+	FLAGBEDVEX(Clan Kyr'am,Kyr'am ,Kyr'am,Kyram,kyram)
+	FLAGBEDVEX(Clan Haranverd,Haranverd ,Haranverd,Haranverd,haranverd)
 
 	class TAE_Specialization_Gonk_Droid: 3as_GNK {
 		scope = 2;
@@ -282,24 +309,6 @@ class CfgVehicles {
 		};
 
 	};
-
-	class TAE_Bed_Base: SFA_Bed_Single {
-		scope = 0;
-		scopeCurator = 0;
-		author = "TAE Mod Team";
-		editorCategory = "TAE_EdCat_HouseKarr";
-		editorSubcategory = "TAE_EdSubcat_HouseKarr_Furniture";
-		hiddenSelections[] = {"camo1"};
-	};
-
-	BEDCLASS(Acklay ,Acklay,acklay)
-	BEDCLASS(Foxx ,Foxx,foxx)
-	BEDCLASS(Varen ,Varen,varen)
-	BEDCLASS(Rook ,Rook,rook)
-	BEDCLASS(,HouseKarr,karr)
-	BEDCLASS(Shyyyo ,Shyyyo,shyyyo)
-	BEDCLASS(Kyr'am ,Kyram,kyram)
-	BEDCLASS(Haranverd ,Haranverd,haranverd)
 
 	class TAE_Wearable_Helmet_Base: ThingX {
 		scope = 0;
@@ -690,28 +699,6 @@ class CfgVehicles {
 		};
 		class ACE_SelfActions {};
 	};
-
-	class TAE_Vexillum_Base: 3AS_Small_Mando_Stand {
-		scope = 0;
-		scopeCurator = 0;
-		author = "TAE Mod Team";
-		editorCategory = "TAE_EdCat_HouseKarr";
-		editorSubcategory = "TAE_EdSubcat_HouseKarr_Vexillums";
-		model = "3AS\3AS_Props\Flags\models\Small_Stand\3as_Small_Stand.p3d";
-		hiddenSelections[] = {"camo1"};
-		hiddenSelectionsMaterials[] = {
-			"\TAEObjects\data\vexillums\tae_vexillum.rvmat"
-		};
-	};
-
-	VEXILLUM(Acklay,Acklay,acklay)
-	VEXILLUM(Foxx,Foxx,foxx)
-	VEXILLUM(Varen,Varen,varen)
-	VEXILLUM(Rook,Rook,rook)
-	VEXILLUM(Command,HouseKarr,house_karr)
-	VEXILLUM(Shyyyo,Shyyyo,shyyyo)
-	VEXILLUM(Kyr'am,Kyram,kyram)
-	VEXILLUM(Haranverd,Haranverd,haranverd)
 
 	class TAE_Restricted_Arsenal_Box: JLTS_Ammobox_weapons_GAR {
 		scope = 2;
