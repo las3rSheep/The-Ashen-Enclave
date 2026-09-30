@@ -47,7 +47,7 @@ class GLU3(TAE_Vexillum_,CNAME,:) TAE_Vexillum_Base {\
 	scopeCurator = 2;\
 	displayName = QGLU3(House Karr ,NAME, Vexillum);\
 	hiddenSelectionsTextures[] = {\
-		QGLU3(\TAEObjects\data\vexillums\tae_vexillum_,TEX,_co.paa)\
+		QGLU3(\TAEObjects\data\vexilla\tae_vexillum_,TEX,_co.paa)\
 	};\
 };
 
@@ -156,8 +156,8 @@ class CfgEditorSubcategories {
 		displayName = "Supplies";
 	};
 
-	class TAE_EdSubcat_HouseKarr_Vexillums {
-		displayName = "Vexillums";
+	class TAE_EdSubcat_HouseKarr_Vexilla {
+		displayName = "Vexilla";
 	};
 
 	class TAE_EdSubcat_HouseKarr_Furniture {
@@ -229,11 +229,11 @@ class CfgVehicles {
 		scopeCurator = 0;
 		author = "TAE Mod Team";
 		editorCategory = "TAE_EdCat_HouseKarr";
-		editorSubcategory = "TAE_EdSubcat_HouseKarr_Vexillums";
+		editorSubcategory = "TAE_EdSubcat_HouseKarr_Vexilla";
 		model = "3AS\3AS_Props\Flags\models\Small_Stand\3as_Small_Stand.p3d";
 		hiddenSelections[] = {"camo1"};
 		hiddenSelectionsMaterials[] = {
-			"\TAEObjects\data\vexillums\tae_vexillum.rvmat"
+			"\TAEObjects\data\vexilla\tae_vexillum.rvmat"
 		};
 	};
 
