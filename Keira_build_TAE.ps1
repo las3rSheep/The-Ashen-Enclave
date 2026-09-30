@@ -21,17 +21,18 @@ $outputRoot = Join-Path $ArmaRoot "$ModFolderName\Addons"
 
 $addons = @(
      "TAECore"
-    # ,"TAEInsignias"
-    # ,"TAEMarkers"
-    # ,"TAEWeapons"
+    ,"TAEInsignias"
+    ,"TAEMarkers"
+    ,"TAEWeapons"
     ,"TAEGear"
-    # ,"TAEDrones"
-    # ,"adv_aceCPR"
-    # ,"TAEASTRS"
-    # ,"TAEJLTSCompat"
+    ,"TAEDrones"
+    ,"adv_aceCPR"
+    ,"TAEASTRS"
+    ,"TAEJLTSCompat"
     ,"TAEUnits"
-    # ,"TAEObjects"
-    # ,"TAEVehicles"
+	, "TAEMiningGuild"
+    ,"TAEObjects"
+    ,"TAEVehicles"
 )
 
 $failures = New-Object System.Collections.Generic.List[string]
