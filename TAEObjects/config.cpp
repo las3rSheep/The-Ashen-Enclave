@@ -521,7 +521,7 @@ class CfgVehicles {
 				condition = "true";
 
 				PUTON(Haranverd Traditional,HaranverdTraditional,haranverd_traditional,haranverd_traditional,tgf_nvg_rangefinder_r,,grey_seal)
-				PUTON(Haranverd Nite Owl,HaranverdNiteOwl,haraverd_niteowl,haraverd_niteowl,tgf_nvg_nite_owl_rangefinder,,grey_female)
+				PUTON(Haranverd Nite Owl,HaranverdNiteOwl,haranverd_niteowl,haranverd_niteowl,tgf_nvg_nite_owl_rangefinder,,grey_female)
 			};
 		};
 	};
@@ -771,7 +771,7 @@ class CfgVehicles {
 				condition = "true";
 
 				PUTON(Teka's,Teka,teka,teka,,,black_seal)
-				PUTON(Shyyyo Flight's,Shyyyo,shyyyo_recon,shyyyo,,,grey_seal)
+				PUTON(Shyyyo Flight,Shyyyo,shyyyo_recon,shyyyo,,,grey_seal)
 			};
 		};
 	};
